@@ -1,8 +1,9 @@
 # Zorin-OS-Pro
 # Please do not use the original authors code, they have not adequately documented the functionality of the script nor the changes to notation made by my overhaul!
 This script turns your Zorin OS CORE instance into a Zorin OS PRO instance
+## More info can be seen here: https://github.com/PEAKYCOMMAND/Zorin-OS-Pro/commit/456414cea17f27051c4ef17ac16901b0d980c666
 
-You will have access to all Zorin OS Pro wallpapers and layouts
+You will have access to all Zorin OS Pro features
 
 ### PLEASE NOTE: you will not recieve support from https://zorin.com/ if you dont like that you can buy a copy.
 <p align="center">
