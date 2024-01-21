@@ -1,0 +1,4 @@
+Acquire
+{
+	http::User-Agent "Zorin OS Premium";
+};	 
