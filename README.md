@@ -29,7 +29,6 @@ git clone https://github.com/CortezJEL/Zorin-OS-Pro.git && cd Zorin-OS-Pro && ch
 ```
 
 # Credits
-- PEAKYCOMMAND For The Original Code And The Idea
 - NamelessNanasi/CortezJEL For Overhauling And Adding Zorin OS 17 Support
+- PEAKYCOMMAND For The Original Code And The Idea (please note, this dev should not be fully trusted)
 - All Other Github Contributors For Their Appropreate Addidions/Commits
-- TBD...
