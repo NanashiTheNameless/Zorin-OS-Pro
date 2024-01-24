@@ -54,7 +54,7 @@ echo ""
 
 if [ "$sixteen" = "true" ]; then   
             # Copy zorin16.list mod
-            sudo cp -f ./zorin16.list /etc/apt/sources.list.d/zorin.list
+            sudo \cp -f ./zorin16.list /etc/apt/sources.list.d/zorin.list
             # Add the required apt-key to be safe
             # curl -sS https://packages.zorinos.com/zorin_os_key.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/zorin.gpg
             # sudo gpg --keyserver key server.ubuntu.com --recv-key  5FD7496A07D323BC
@@ -65,7 +65,7 @@ if [ "$sixteen" = "true" ]; then
             sudo add-apt-repository --yes ppa:zorinos/apps
 elif [ "$sixteen" = "false" ]; then
             # Copy zorin17.list mod
-            sudo cp -f ./zorin17.list /etc/apt/sources.list.d/zorin.list
+            sudo \cp -f ./zorin17.list /etc/apt/sources.list.d/zorin.list
             # Add the required apt-key to be safe
             # curl -sS https://packages.zorinos.com/zorin_os_key.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/zorin.gpg
             # sudo gpg --keyserver key server.ubuntu.com --recv-key  5FD7496A07D323BC
