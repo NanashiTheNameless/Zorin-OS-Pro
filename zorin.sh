@@ -59,6 +59,10 @@ if [ "$sixteen" = "true" ]; then
             # curl -sS https://packages.zorinos.com/zorin_os_key.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/zorin.gpg
             # sudo gpg --keyserver key server.ubuntu.com --recv-key  5FD7496A07D323BC
             # sudo gpg -a --export 5FD7496A07D323BC | sudo apt-key add -
+            sudo add-apt-repository --yes ppa:zorinos/stable
+            sudo add-apt-repository --yes ppa:zorinos/patches
+            sudo add-apt-repository --yes ppa:zorinos/drivers
+            sudo add-apt-repository --yes ppa:zorinos/apps
 elif [ "$sixteen" = "false" ]; then
             # Copy zorin17.list mod
             sudo cp -f ./zorin17.list /etc/apt/sources.list.d/zorin.list
@@ -66,6 +70,10 @@ elif [ "$sixteen" = "false" ]; then
             # curl -sS https://packages.zorinos.com/zorin_os_key.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/zorin.gpg
             # sudo gpg --keyserver key server.ubuntu.com --recv-key  5FD7496A07D323BC
             # sudo gpg -a --export 5FD7496A07D323BC | sudo apt-key add -
+            sudo add-apt-repository --yes ppa:zorinos/stable
+            sudo add-apt-repository --yes ppa:zorinos/patches
+            sudo add-apt-repository --yes ppa:zorinos/drivers
+            sudo add-apt-repository --yes ppa:zorinos/apps
 else
             echo ""
             echo "You are not running this script correctly, read the GitHub https://github.com/CortezJEL/Zorin-OS-Pro/ for more info"
