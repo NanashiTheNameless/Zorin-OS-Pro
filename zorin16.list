@@ -1,14 +1,14 @@
-deb [trusted=yes] https://packages.zorinos.com/stable focal main
+deb https://packages.zorinos.com/stable focal main
 deb-src https://packages.zorinos.com/stable focal main
 
-deb [trusted=yes] https://packages.zorinos.com/patches focal main
-deb-src [trusted=yes] https://packages.zorinos.com/patches focal main
+deb https://packages.zorinos.com/patches focal main
+deb-src https://packages.zorinos.com/patches focal main
 
-deb [trusted=yes] https://packages.zorinos.com/apps focal main
-deb-src [trusted=yes] https://packages.zorinos.com/apps focal main
+deb https://packages.zorinos.com/apps focal main
+deb-src https://packages.zorinos.com/apps focal main
 
-deb [trusted=yes] https://packages.zorinos.com/drivers focal main restricted
-deb-src [trusted=yes] https://packages.zorinos.com/drivers focal main restricted
+deb https://packages.zorinos.com/drivers focal main restricted
+deb-src https://packages.zorinos.com/drivers focal main restricted
 
-deb [trusted=yes] https://packages.zorinos.com/premium focal main
-deb-src [trusted=yes] https://packages.zorinos.com/premium focal main
+deb https://packages.zorinos.com/premium focal main
+deb-src https://packages.zorinos.com/premium focal main
