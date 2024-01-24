@@ -9,7 +9,7 @@ echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═�
 echo "|ZORIN-OS-PRO| |Script v4.0.0| |Overhauled By NamelessNanasi/CortezJEL| |original by PEAKYCOMMAND|"
 echo ""
 echo "(Please note this version ONLY works on Zorin 17 and 16)"
-echo "(to use this script on Zorin 16 add the -6 flag or -7 to manually override to zorin 17 although that should be redundant)"
+echo "(to use this script on Zorin 16 add the -6 flag or -7 for zorin 17)"
 echo "THIS CODE AND ACCOMPANYING DOCUMENTATION WERE OVERHAULED SIGNIFICANTLY BY NamelessNanashi/CortezJEL, "
 echo "IF YOU GOT THIS CODE ELSEWHERE KNOW THAT THE CODE SHOULD NOT BE FULLY TRUSTED DUE TO THE IMPROPER ETIQUETTE AND ACTIONS OF THE ORIGINAL DEV!"
 echo "THIS CODE AND ACCOMPANYING DOCUMENTATION WERE OVERHAULED SIGNIFICANTLY BY NamelessNanashi/CortezJEL, "
