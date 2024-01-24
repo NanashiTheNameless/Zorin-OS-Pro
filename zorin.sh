@@ -39,7 +39,7 @@ if [ "$OPTION_COUNT" -gt 1 ]; then echo "too many options"; fi
 echo "Preparing to install dependencies..."
 
 # Install ca-certificates
-sudo apt install ca-certificates aptitude
+sudo apt-get install ca-certificates aptitude
 
 sleep 2
 
