@@ -36,14 +36,18 @@ while getopts "67" opt; do
 done
 if [ "$OPTION_COUNT" -gt 1 ]; then echo "too many options"; fi
 
+echo ""
 echo "Preparing to install dependencies..."
+echo ""
 
 # Install ca-certificates
 sudo apt-get install ca-certificates aptitude
 
 sleep 2
 
+echo ""
 echo "Updating the defaut source.list for Zorin's custom resources..."
+echo ""
 
 if [ "$sixteen" = "true" ]; then   
             # Copy zorin16.list mod
@@ -60,20 +64,26 @@ elif [ "$sixteen" = "false" ]; then
             # sudo gpg --keyserver key server.ubuntu.com --recv-key  5FD7496A07D323BC
             # sudo gpg -a --export 5FD7496A07D323BC | sudo apt-key add -
 else
+            echo ""
             echo "You are not running this script correctly, read the GitHub https://github.com/CortezJEL/Zorin-OS-Pro/ for more info"
+            echo ""
             exit 1
 fi
 
 sleep 2
 
+echo ""
 echo "adding premium flags..."
+echo ""
 
 # introduces premium user agent
 sudo cp -f ./99zorin-os-premium-user-agent /etc/apt/apt.conf.d/
 
 sleep 2
 
+echo ""
 echo "Adding premium content..."
+echo ""
 
 # update packages
 sudo aptitude update
@@ -85,9 +95,15 @@ elif [ "$sixteen" = "false" ]; then
             # install 17 pro content
             sudo aptitude install zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-17
 else
+            echo ""
             echo "You are not running this script correctly, read the GitHub https://github.com/CortezJEL/Zorin-OS-Pro/ for more info"
+            echo ""
             exit 1
 fi
-
+echo ""
+echo ""
 echo "All done!"
+echo ""
 echo 'Please Reboot your Zorin Instance... you can do so with "sudo reboot"'
+echo ""
+echo ""
