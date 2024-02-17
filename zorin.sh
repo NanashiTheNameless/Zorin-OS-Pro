@@ -6,7 +6,7 @@ echo "  ███╔╝ ██║   ██║██████╔╝██║�
 echo " ███╔╝  ██║   ██║██╔══██╗██║██║╚██╗██║    ██║   ██║╚════██║    ██╔═══╝ ██╔══██╗██║   ██║"
 echo "███████╗╚██████╔╝██║  ██║██║██║ ╚████║    ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝"
 echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ "
-echo "|ZORIN-OS-PRO| |Script v4.0.0| |Overhauled By NamelessNanasi/CortezJEL| |original by PEAKYCOMMAND|"
+echo "|ZORIN-OS-PRO| |Script v5.0.0| |Overhauled By NamelessNanasi/CortezJEL| |original by PEAKYCOMMAND|"
 echo ""
 echo "(Please note this version ONLY works on Zorin 17 and 16)"
 echo ""
@@ -49,31 +49,17 @@ sudo apt-get install ca-certificates aptitude
 sleep 2
 
 echo ""
-echo "Updating the defaut source.list for Zorin's custom resources..."
+echo "Updating the defaut sources.list for Zorin's custom resources..."
 echo ""
 
 if [ "$sixteen" = "true" ]; then   
             # Copy zorin16.list mod
             sudo \cp -f ./zorin16.list /etc/apt/sources.list.d/zorin.list
-            # Add the required apt-key to be safe
-            # curl -sS https://packages.zorinos.com/zorin_os_key.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/zorin.gpg
-            # sudo gpg --keyserver key server.ubuntu.com --recv-key  5FD7496A07D323BC
-            # sudo gpg -a --export 5FD7496A07D323BC | sudo apt-key add -
-            sudo add-apt-repository --yes ppa:zorinos/stable
-            sudo add-apt-repository --yes ppa:zorinos/patches
-            sudo add-apt-repository --yes ppa:zorinos/drivers
-            sudo add-apt-repository --yes ppa:zorinos/apps
+
 elif [ "$sixteen" = "false" ]; then
             # Copy zorin17.list mod
             sudo \cp -f ./zorin17.list /etc/apt/sources.list.d/zorin.list
             # Add the required apt-key to be safe
-            # curl -sS https://packages.zorinos.com/zorin_os_key.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/zorin.gpg
-            # sudo gpg --keyserver key server.ubuntu.com --recv-key  5FD7496A07D323BC
-            # sudo gpg -a --export 5FD7496A07D323BC | sudo apt-key add -
-            sudo add-apt-repository --yes ppa:zorinos/stable
-            sudo add-apt-repository --yes ppa:zorinos/patches
-            sudo add-apt-repository --yes ppa:zorinos/drivers
-            sudo add-apt-repository --yes ppa:zorinos/apps
 else
             echo ""
             echo "You are not running this script correctly, read the GitHub https://github.com/CortezJEL/Zorin-OS-Pro/ for more info"
@@ -84,11 +70,21 @@ fi
 sleep 2
 
 echo ""
+echo "Adding Zorin's Package Keys..."
+echo ""
+
+sudo \cp -n ./zorin_apt-cdrom.gpg /etc/apt/trusted.gpg.d/
+sudo \cp -n ./zorin-os-premium.gpg /etc/apt/trusted.gpg.d/
+sudo \cp -n ./zorin-os.gpg /etc/apt/trusted.gpg.d/
+
+sleep 2
+
+echo ""
 echo "adding premium flags..."
 echo ""
 
 # introduces premium user agent
-sudo cp -f ./99zorin-os-premium-user-agent /etc/apt/apt.conf.d/
+sudo \cp -f ./99zorin-os-premium-user-agent /etc/apt/apt.conf.d/
 
 sleep 2
 
