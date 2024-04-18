@@ -6,7 +6,7 @@ echo "  ███╔╝ ██║   ██║██████╔╝██║�
 echo " ███╔╝  ██║   ██║██╔══██╗██║██║╚██╗██║    ██║   ██║╚════██║    ██╔═══╝ ██╔══██╗██║   ██║"
 echo "███████╗╚██████╔╝██║  ██║██║██║ ╚████║    ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝"
 echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ "
-echo "|ZORIN-OS-PRO| |Script v6.0.0-BETA| |Overhauled By NamelessNanasi/NanashiTheNameless| |original by PEAKYCOMMAND|"
+echo "|ZORIN-OS-PRO| |Script v6.0.0| |Overhauled By NamelessNanasi/NanashiTheNameless| |original by PEAKYCOMMAND|"
 echo ""
 echo "(Please note this version ONLY works on Zorin 17 and 16)"
 echo ""
