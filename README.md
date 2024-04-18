@@ -27,9 +27,14 @@ git clone -b Beta/Testing https://github.com/CortezJEL/Zorin-OS-Pro.git && cd Zo
 git clone -b Beta/Testing https://github.com/CortezJEL/Zorin-OS-Pro.git && cd Zorin-OS-Pro && chmod +x zorin.sh && ./zorin.sh -7
 ```
 
-### For Zorin 16 or 17 (BETA)
+### For More Content
+#### Zorin 16
 ```bash
-git clone -b Beta/Testing https://github.com/CortezJEL/Zorin-OS-Pro.git && cd Zorin-OS-Pro && chmod +x zorin.sh && ./zorin.sh -B
+git clone -b Beta/Testing https://github.com/CortezJEL/Zorin-OS-Pro.git && cd Zorin-OS-Pro && chmod +x zorin.sh && ./zorin.sh -6 -M
+```
+#### Zorin 17
+```bash
+git clone -b Beta/Testing https://github.com/CortezJEL/Zorin-OS-Pro.git && cd Zorin-OS-Pro && chmod +x zorin.sh && ./zorin.sh -7 -M
 ```
 
 # Credits
