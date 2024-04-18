@@ -16,9 +16,7 @@ echo ""
 echo "THIS CODE AND ACCOMPANYING DOCUMENTATION WERE OVERHAULED SIGNIFICANTLY BY NamelessNanashi/CortezJEL, "
 echo "IF YOU GOT THIS CODE ELSEWHERE KNOW THAT THE CODE SHOULD NOT BE FULLY TRUSTED DUE TO THE IMPROPER ETIQUETTE AND ACTIONS OF THE ORIGINAL DEV!"
 echo ""
-echo "THIS CODE AND ACCOMPANYING DOCUMENTATION WERE OVERHAULED SIGNIFICANTLY BY NamelessNanashi/CortezJEL, "
-echo "IF YOU GOT THIS CODE ELSEWHERE KNOW THAT THE CODE SHOULD NOT BE FULLY TRUSTED DUE TO THE IMPROPER ETIQUETTE AND ACTIONS OF THE ORIGINAL DEV!"
-sleep 10
+sleep 8
 
 function fail() {
         echo ""
@@ -27,14 +25,7 @@ function fail() {
         exit 1
 }
 
-# Prompt user
-echo "Please Enter your sudo password!"
-
-# Sudo echo so it always propts here
-sudo echo > /dev/null
-
 # Parse command line arguments for flag
-version=
 while getopts "67M" opt; do
   case $opt in
     6)
@@ -53,6 +44,12 @@ if [ -z ${version+x} ] ; then fail; fi
 echo ""
 echo "Preparing to install dependencies..."
 echo ""
+
+# Prompt user
+echo "Please Enter your sudo password!"
+
+# Sudo echo so it always propts here
+sudo echo > /dev/null
 
 # Install ca-certificates and aptitude
 sudo apt-get install ca-certificates aptitude
