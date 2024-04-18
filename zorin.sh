@@ -6,21 +6,21 @@ echo "  ███╔╝ ██║   ██║██████╔╝██║�
 echo " ███╔╝  ██║   ██║██╔══██╗██║██║╚██╗██║    ██║   ██║╚════██║    ██╔═══╝ ██╔══██╗██║   ██║"
 echo "███████╗╚██████╔╝██║  ██║██║██║ ╚████║    ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝"
 echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ "
-echo "|ZORIN-OS-PRO| |Script v6.0.0-BETA| |Overhauled By NamelessNanasi/CortezJEL| |original by PEAKYCOMMAND|"
+echo "|ZORIN-OS-PRO| |Script v6.0.0-BETA| |Overhauled By NamelessNanasi/NanashiTheNameless| |original by PEAKYCOMMAND|"
 echo ""
 echo "(Please note this version ONLY works on Zorin 17 and 16)"
 echo ""
 echo "(to use this script on Zorin 16 add the -6 flag or -7 for zorin 17)"
 echo "(add -M for more content)"
 echo ""
-echo "THIS CODE AND ACCOMPANYING DOCUMENTATION WERE OVERHAULED SIGNIFICANTLY BY NamelessNanashi/CortezJEL, "
+echo "THIS CODE AND ACCOMPANYING DOCUMENTATION WERE OVERHAULED SIGNIFICANTLY BY NamelessNanashi/NanashiTheNameless, "
 echo "IF YOU GOT THIS CODE ELSEWHERE KNOW THAT THE CODE SHOULD NOT BE FULLY TRUSTED DUE TO THE IMPROPER ETIQUETTE AND ACTIONS OF THE ORIGINAL DEV!"
 echo ""
 sleep 8
 
 function fail() {
         echo ""
-        echo "You are not running this script correctly, read the GitHub https://github.com/CortezJEL/Zorin-OS-Pro/ for more info"
+        echo "You are not running this script correctly, read the GitHub https://github.com/NanashiTheNameless/Zorin-OS-Pro/ for more info"
         echo ""
         exit 1
 }
