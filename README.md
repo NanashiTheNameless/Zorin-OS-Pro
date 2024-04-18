@@ -19,17 +19,17 @@ copy the command below, paste in your terminal, then put your password, then res
 
 ### For Zorin 16
 ```bash
-git clone https://github.com/CortezJEL/Zorin-OS-Pro.git && cd Zorin-OS-Pro && chmod +x zorin.sh && ./zorin.sh -6
+git clone https://github.com/NanashiTheNameless/Zorin-OS-Pro.git && ./Zorin-OS-Pro/zorin.sh -6
 
 ```
 
 ### For Zorin 17
 ```bash
-git clone https://github.com/CortezJEL/Zorin-OS-Pro.git && cd Zorin-OS-Pro && chmod +x zorin.sh && ./zorin.sh -7
+git clone https://github.com/NanashiTheNameless/Zorin-OS-Pro.git && ./Zorin-OS-Pro/zorin.sh -7
 
 ```
 
 # Credits
-- NamelessNanasi/CortezJEL For Overhauling And Adding Zorin OS 17 Support
+- NamelessNanasi/NanashiTheNameless For Overhauling And Adding Zorin OS 17 Support
 - PEAKYCOMMAND For The Original Code And The Idea (please note, this dev should not be fully trusted)
 - All Other Github Contributors For Their Appropreate Addidions/Commits
