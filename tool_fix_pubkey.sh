@@ -1,4 +1,5 @@
 #!/bin/sh -e
+
 # Download Keys from the Ubuntu KeyServer
 tmp="$(mktemp)"
 sudo apt-get update 2>&1 | sed -En 's/.*NO_PUBKEY ([[:xdigit:]]+).*/\1/p' | sort -u > "${tmp}"
