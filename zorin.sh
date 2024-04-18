@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+fail() {
+        echo ""
+        echo "You are not running this script correctly, read the GitHub https://github.com/CortezJEL/Zorin-OS-Pro/ for more info"
+        echo ""
+        exit 1
+}
+
 echo "███████╗ ██████╗ ██████╗ ██╗███╗   ██╗     ██████╗ ███████╗    ██████╗ ██████╗  ██████╗ "
 echo "╚══███╔╝██╔═══██╗██╔══██╗██║████╗  ██║    ██╔═══██╗██╔════╝    ██╔══██╗██╔══██╗██╔═══██╗"
 echo "  ███╔╝ ██║   ██║██████╔╝██║██╔██╗ ██║    ██║   ██║███████╗    ██████╔╝██████╔╝██║   ██║"
@@ -26,27 +33,27 @@ echo "Please Enter your sudo password!"
 sudo echo > /dev/null
 
 # Parse command line arguments for flag
-OPTION_COUNT=0
+version=
 while getopts "67M" opt; do
   case $opt in
     6)
         version="16"
     ;;
     7)
-        sixteen="17"
+        version="17"
     ;;
     M)
         more="true"
     ;;
     esac
 done
-if [ "$OPTION_COUNT" -gt 1 ]; then echo "too many options"; fi
+if [ -z ${version+x} ] ; then fail; fi
 
 echo ""
 echo "Preparing to install dependencies..."
 echo ""
 
-# Install ca-certificates
+# Install ca-certificates and aptitude
 sudo apt-get install ca-certificates aptitude
 
 sleep 2
@@ -56,18 +63,13 @@ echo "Updating the defaut sources.list for Zorin's custom resources..."
 echo ""
 
 if [ "$version" = "16" ]; then   
-            # Copy zorin16.list mod
-            sudo \cp -f ./zorin16.list /etc/apt/sources.list.d/zorin.list
-
+    # Copy zorin16.list mod
+    sudo \cp -f ./zorin16.list /etc/apt/sources.list.d/zorin.list
 elif [ "$version" = "17" ]; then
-            # Copy zorin17.list mod
-            sudo \cp -f ./zorin17.list /etc/apt/sources.list.d/zorin.list
-            # Add the required apt-key to be safe
+    # Copy zorin17.list mod
+    sudo \cp -f ./zorin17.list /etc/apt/sources.list.d/zorin.list
 else
-            echo ""
-            echo "You are not running this script correctly, read the GitHub https://github.com/CortezJEL/Zorin-OS-Pro/ for more info"
-            echo ""
-            exit 1
+    fail
 fi
 
 sleep 2
@@ -98,17 +100,22 @@ echo ""
 # update packages
 sudo aptitude update ; sudo apt-get update
 
-if [ "$version" = "16" ]; then   
-            # install 16 pro content
-            sudo aptitude install zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-16 zorin-os-www-browser zorin-sound-theme zorin-windows-app-support-installation-shortcut
+if [ "$version" = "16" ]; then
+    # install 16 pro content
+    if [ "$more" = "true" ]; then
+        sudo aptitude install zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-16 zorin-os-www-browser zorin-sound-theme zorin-windows-app-support-installation-shortcut 
+    else
+        sudo aptitude install zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-icon-themes zorin-os-artwork zorin-os-keyring zorin-os-premium-keyring zorin-os-pro zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-wallpapers zorin-os-wallpapers-16
+    fi
 elif [ "$version" = "17" ]; then
-            # install 17 pro content
-            sudo aptitude install zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-pro-wallpapers-17 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-16 zorin-os-wallpapers-17 zorin-os-www-browser zorin-sound-theme zorin-windows-app-support-installation-shortcut
+    # install 17 pro content
+    if [ "$more" = "true" ]; then
+        sudo aptitude install zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-pro-wallpapers-17 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-16 zorin-os-wallpapers-17 zorin-os-www-browser zorin-sound-theme zorin-windows-app-support-installation-shortcut
+    else
+        sudo aptitude install zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-icon-themes zorin-os-artwork zorin-os-keyring zorin-os-premium-keyring zorin-os-pro zorin-os-pro-wallpapers zorin-os-pro-wallpapers-17 zorin-os-wallpapers zorin-os-wallpapers-17
+    fi
 else
-            echo ""
-            echo "You are not running this script correctly, read the GitHub https://github.com/CortezJEL/Zorin-OS-Pro/ for more info"
-            echo ""
-            exit 1
+    fail
 fi
 echo ""
 echo ""
