@@ -19,22 +19,22 @@ copy the command below, paste in your terminal, then put your password, then res
 
 ### For Zorin 16
 ```bash
-git clone -b Beta/Testing https://github.com/CortezJEL/Zorin-OS-Pro.git && cd Zorin-OS-Pro && chmod +x zorin.sh && ./zorin.sh -6
+git clone -b Beta/Testing https://github.com/CortezJEL/Zorin-OS-Pro.git && ./Zorin-OS-Pro/zorin.sh -6
 ```
 
 ### For Zorin 17
 ```bash
-git clone -b Beta/Testing https://github.com/CortezJEL/Zorin-OS-Pro.git && cd Zorin-OS-Pro && chmod +x zorin.sh && ./zorin.sh -7
+git clone -b Beta/Testing https://github.com/CortezJEL/Zorin-OS-Pro.git && ./Zorin-OS-Pro/zorin.sh -7
 ```
 
 ## For More Content
-#### Zorin 16
+##### Zorin 16
 ```bash
-git clone -b Beta/Testing https://github.com/CortezJEL/Zorin-OS-Pro.git && cd Zorin-OS-Pro && chmod +x zorin.sh && ./zorin.sh -6 -M
+git clone -b Beta/Testing https://github.com/CortezJEL/Zorin-OS-Pro.git && ./Zorin-OS-Pro/zorin.sh -6 -M
 ```
-#### Zorin 17
+##### Zorin 17
 ```bash
-git clone -b Beta/Testing https://github.com/CortezJEL/Zorin-OS-Pro.git && cd Zorin-OS-Pro && chmod +x zorin.sh && ./zorin.sh -7 -M
+git clone -b Beta/Testing https://github.com/CortezJEL/Zorin-OS-Pro.git && ./Zorin-OS-Pro/zorin.sh -7 -M
 ```
 
 # Credits
