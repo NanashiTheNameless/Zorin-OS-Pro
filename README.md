@@ -30,11 +30,11 @@ git clone https://github.com/NanashiTheNameless/Zorin-OS-Pro.git && ./Zorin-OS-P
 ## For More Content
 ##### Zorin 16
 ```bash
-git clone -b Beta/Testing https://github.com/NanashiTheNameless/Zorin-OS-Pro.git && ./Zorin-OS-Pro/zorin.sh -6 -M
+git clone https://github.com/NanashiTheNameless/Zorin-OS-Pro.git && ./Zorin-OS-Pro/zorin.sh -6 -M
 ```
 ##### Zorin 17
 ```bash
-git clone -b Beta/Testing https://github.com/NanashiTheNameless/Zorin-OS-Pro.git && ./Zorin-OS-Pro/zorin.sh -7 -M
+git clone https://github.com/NanashiTheNameless/Zorin-OS-Pro.git && ./Zorin-OS-Pro/zorin.sh -7 -M
 ```
 
 # Credits
