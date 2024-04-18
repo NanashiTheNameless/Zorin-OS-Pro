@@ -48,8 +48,8 @@ echo ""
 # Prompt user
 echo "Please Enter your sudo password!"
 
-# Sudo echo so it always propts here
-sudo echo > /dev/null
+# Sudo -v so it always propts here
+sudo -v
 
 # Install ca-certificates and aptitude
 sudo apt-get install ca-certificates aptitude
