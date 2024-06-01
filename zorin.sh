@@ -62,10 +62,10 @@ echo ""
 
 if [ "$version" = "16" ]; then   
     # Copy zorin16.list mod
-    sudo \cp -f ./zorin16.list /etc/apt/sources.list.d/zorin.list
+    sudo \cp -f $(dirname "$(readlink -f "$0")")/zorin16.list /etc/apt/sources.list.d/zorin.list
 elif [ "$version" = "17" ]; then
     # Copy zorin17.list mod
-    sudo \cp -f ./zorin17.list /etc/apt/sources.list.d/zorin.list
+    sudo \cp -f $(dirname "$(readlink -f "$0")")/zorin17.list /etc/apt/sources.list.d/zorin.list
 else
     fail
 fi
@@ -76,9 +76,9 @@ echo ""
 echo "Adding Zorin's Package Keys..."
 echo ""
 
-sudo \cp -n ./zorin_apt-cdrom.gpg /etc/apt/trusted.gpg.d/
-sudo \cp -n ./zorin-os-premium.gpg /etc/apt/trusted.gpg.d/
-sudo \cp -n ./zorin-os.gpg /etc/apt/trusted.gpg.d/
+sudo \cp -n $(dirname "$(readlink -f "$0")")/zorin_apt-cdrom.gpg /etc/apt/trusted.gpg.d/
+sudo \cp -n $(dirname "$(readlink -f "$0")")/zorin-os-premium.gpg /etc/apt/trusted.gpg.d/
+sudo \cp -n $(dirname "$(readlink -f "$0")")/zorin-os.gpg /etc/apt/trusted.gpg.d/
 
 sleep 2
 
@@ -87,7 +87,7 @@ echo "adding premium flags..."
 echo ""
 
 # introduces premium user agent
-sudo \cp -f ./99zorin-os-premium-user-agent /etc/apt/apt.conf.d/
+sudo \cp -f $(dirname "$(readlink -f "$0")")/99zorin-os-premium-user-agent /etc/apt/apt.conf.d/
 
 sleep 2
 
