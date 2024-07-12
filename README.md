@@ -37,7 +37,12 @@ git clone https://github.com/NanashiTheNameless/Zorin-OS-Pro.git && ./Zorin-OS-P
 git clone https://github.com/NanashiTheNameless/Zorin-OS-Pro.git && ./Zorin-OS-Pro/zorin.sh -7 -M
 ```
 
-## If you face issues with "zorin-os-premium-keyring" install the deb manually from the included "deb-if-issues-downloading" folder or download from [https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb](https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb) after overriding your useragent to "Zorin OS Premium" using a useragent plugin/extension
+## If you face issues with "zorin-os-premium-keyring" install the deb manually using this command
+```bash
+curl -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb
+sudo apt install ./zorin-os-premium-keyring_1.0_all.deb
+```
+It should be okay to ignore further errors
 
 # Credits
 - NamelessNanasi/NanashiTheNameless For Overhauling And Adding Zorin OS 17 Support
