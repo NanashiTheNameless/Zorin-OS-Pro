@@ -39,7 +39,7 @@ git clone https://github.com/NanashiTheNameless/Zorin-OS-Pro.git && ./Zorin-OS-P
 
 ## If you face issues with "zorin-os-premium-keyring" install the deb manually using this command
 ```bash
-curl -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb
+curl -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb --output zorin-os-premium-keyring_1.0_all.deb
 sudo apt install ./zorin-os-premium-keyring_1.0_all.deb
 ```
 It should be okay to ignore further errors
