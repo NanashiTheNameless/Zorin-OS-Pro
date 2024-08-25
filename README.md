@@ -47,4 +47,4 @@ It should be okay to ignore further errors
 # Credits
 - NamelessNanasi/NanashiTheNameless For Overhauling And Adding Zorin OS 17 Support
 - PEAKYCOMMAND For The Original Code And The Idea (please note, this dev should not be fully trusted)
-- All Other Github Contributors For Their Appropreate Addidions/Commits
+- [All Other Github Contributors For Their Appropreate Addidions/Commits](https://github.com/NanashiTheNameless/Zorin-OS-Pro/graphs/contributors)
