@@ -115,7 +115,7 @@ fi
 
 # Make sure the temp directory gets removed on script exit.
 trap "exit 1"           HUP INT PIPE QUIT TERM
-trap 'rm -r -f "$TEMPD"'   EXIT
+trap 'rm -rf "$TEMPD"'   EXIT
 
 # manually add the keyring
 curl -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb --output $TEMPD/zorin-os-premium-keyring_1.0_all.deb
