@@ -66,7 +66,7 @@ fi
 sleep 2
 
 echo ""
-echo "Updating the defaut sources.list for Zorin's custom resources..."
+echo "Updating the default sources.list for Zorin's custom resources..."
 echo ""
 
 if [ "$version" = "16" ]; then   

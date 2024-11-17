@@ -5,7 +5,7 @@ This script turns your Zorin OS CORE instance into a Zorin OS PRO instance
 
 You will have access to all Zorin OS Pro features
 
-### PLEASE NOTE: you will not recieve support from https://zorin.com/ if you dont like that you can buy a copy.
+### PLEASE NOTE: you will not receive support from https://zorin.com/ if you dont like that you can buy a copy.
 <p align="center">
 <img width="700" src="https://user-images.githubusercontent.com/91558914/184500559-7c74f6db-f82d-415f-b88a-c00e09c600e3.png">
 </p>
