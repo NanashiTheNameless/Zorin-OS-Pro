@@ -124,8 +124,9 @@ sudo apt install ${apt_no_confirm} $TEMPD/zorin-os-premium-keyring_1.0_all.deb
 # update packages
 if [ "$unattended" = "false" ]; then
     sudo aptitude update
+else
+    sudo apt-get update
 fi
-sudo apt-get update
 
 function package_install() {
     if [ "$unattended" = "true" ]; then
