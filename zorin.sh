@@ -92,7 +92,7 @@ sudo \cp -n $(dirname "$(readlink -f "$0")")/zorin-os.gpg /etc/apt/trusted.gpg.d
 sleep 2
 
 echo ""
-echo "adding premium flags..."
+echo "Adding premium flags..."
 echo ""
 
 # introduces premium user agent
@@ -119,7 +119,7 @@ trap 'rm -rf "$TEMPD"'   EXIT
 
 # manually add the keyring
 curl -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb --output $TEMPD/zorin-os-premium-keyring_1.0_all.deb
-sudo apt install ${apt_no_confirm} $TEMPD/zorin-os-premium-keyring_1.0_all.deb
+sudo apt install ${apt_no_confirm} "$TEMPD/zorin-os-premium-keyring_1.0_all.deb"
 
 # update packages
 if [ "$unattended" = "false" ]; then
