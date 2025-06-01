@@ -168,8 +168,8 @@ if [ ! -e "$TEMPD" ]; then
 fi
 
 # Make sure the temp directory gets removed on script exit.
-trap 'exit 1'           HUP INT PIPE QUIT TERM
-trap '\rm -rf "$TEMPD"'   EXIT
+trap 'exit 1'                                         HUP INT PIPE QUIT TERM
+trap 'if [ -n "$TEMPD" ]; then rm -rf "$TEMPD"; fi'   EXIT
 
 # update packages
 if [ "$unattended" = "false" ]; then
