@@ -21,22 +21,22 @@ copy the command below, paste in your terminal, then put your password, then res
 
 ### For Zorin 16
 ```bash
-git clone https://github.com/NanashiTheNameless/Zorin-OS-Pro.git && ./Zorin-OS-Pro/zorin.sh -6
+curl -s -L https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh | bash -s -- -6
 ```
 
 ### For Zorin 17
 ```bash
-git clone https://github.com/NanashiTheNameless/Zorin-OS-Pro.git && ./Zorin-OS-Pro/zorin.sh -7
+curl -s -L https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh | bash -s -- -7
 ```
 
-## For More Content
+## For A Lot of Extra Content
 ##### Zorin 16
 ```bash
-git clone https://github.com/NanashiTheNameless/Zorin-OS-Pro.git && ./Zorin-OS-Pro/zorin.sh -6 -M
+curl -s -L https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh | bash -s -- -6 -X
 ```
 ##### Zorin 17
 ```bash
-git clone https://github.com/NanashiTheNameless/Zorin-OS-Pro.git && ./Zorin-OS-Pro/zorin.sh -7 -M
+curl -s -L https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh | bash -s -- -7 -X
 ```
 
 ## If you face issues with "zorin-os-premium-keyring" install the deb manually using this command
