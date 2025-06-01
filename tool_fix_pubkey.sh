@@ -1,5 +1,15 @@
 #!/bin/sh -e
 
+#################################################################################
+echo ""
+echo "This tool is not stable/not safe only use this if you know what you doing!"
+echo "(you will need to edit this script to enable it)"
+echo ""
+#################################################################################
+# If you accept that this is not for real use you can comment out the line below.
+exit 1
+#################################################################################
+
 # Download Keys from the Ubuntu KeyServer
 tmp="$(mktemp)"
 sudo apt-get update 2>&1 | sed -En 's/.*NO_PUBKEY ([[:xdigit:]]+).*/\1/p' | sort -u > "${tmp}"
