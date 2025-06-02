@@ -9,15 +9,15 @@ assignees: ''
 
 **Did you ensure you are using the latest version of this tool?**
 
-[ ] Yes
+- [ ] Yes
 
-[ ] No
+- [ ] No
 
 **Did you try googling any error messages?**
 
-[ ] Yes
+- [ ] Yes
 
-[ ] No
+- [ ] No
 
 **Describe the bug**
 A clear and concise description of what the bug is.
