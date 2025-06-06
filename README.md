@@ -16,15 +16,9 @@ You will have access to all Zorin OS Pro features
 
 ### If you like the OS please consider supporting the original devs by buying a genuine copy!
 
-## Star History
+## Stargazers over time
 
-<a href="https://www.star-history.com/#NanashiTheNameless/Zorin-OS-Pro&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=NanashiTheNameless/Zorin-OS-Pro&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=NanashiTheNameless/Zorin-OS-Pro&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=NanashiTheNameless/Zorin-OS-Pro&type=Date" />
- </picture>
-</a>
+[![Stargazers over time](https://starchart.cc/NanashiTheNameless/Zorin-OS-Pro.svg?variant=adaptive)](https://starchart.cc/NanashiTheNameless/Zorin-OS-Pro)
 
 # Installation:
 opy the command below, paste in your terminal, then put your password, then restart your computer when it completes and you will now be running the pro version Zorin OS
