@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eu -o pipefail
+set -e -o pipefail
 
 # Make sure the temp directory gets removed on script exit.
 trap 'exit 1'                                         HUP INT PIPE QUIT TERM
