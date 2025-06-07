@@ -12,7 +12,7 @@ echo "  ███╔╝ ██║   ██║██████╔╝██║�
 echo " ███╔╝  ██║   ██║██╔══██╗██║██║╚██╗██║    ██║   ██║╚════██║    ██╔═══╝ ██╔══██╗██║   ██║"
 echo "███████╗╚██████╔╝██║  ██║██║██║ ╚████║    ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝"
 echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ "
-echo "|ZORIN-OS-PRO| |Script v9.0.1| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
+echo "|ZORIN-OS-PRO| |Script v9.0.2| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
 echo ""
 echo "(Please note this version ONLY works on Zorin 17 and 16)"
 echo ""
@@ -47,7 +47,7 @@ while getopts "67XU" opt; do
         extra="true"
     ;;
     U)
-        apt_no_confirm=" -y"
+        apt_no_confirm="-y"
     ;;
     esac
 done
@@ -64,7 +64,7 @@ echo "Please Enter your sudo password!"
 sudo -v
 
 # Install ca-certificates and aptitude
-sudo apt-get install${apt_no_confirm} ca-certificates curl
+sudo apt-get install ${apt_no_confirm} ca-certificates curl
 
 sleep 2
 
@@ -145,13 +145,13 @@ echo ""
 curl https://ppa.launchpadcontent.net/zorinos/stable/ubuntu/pool/main/z/zorin-os-keyring/zorin-os-keyring_1.1_all.deb --output $TEMPD/zorin-os-keyring_1.1_all.deb
 curl -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb --output $TEMPD/zorin-os-premium-keyring_1.0_all.deb
 # fix permissions of manually downloaded keyrings
-# otherwise it spits out "W: Download is performed unsandboxed as root as file '/tmp/tmp.<something>/zorin-os-premium-keyring_1.0_all.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)"
-sudo chmod -v 644 "$TEMPD/zorin-os-keyring_1.1_all.deb"
-sudo chmod -v 644 "$TEMPD/zorin-os-premium-keyring_1.0_all.deb"
-sudo apt install${apt_no_confirm} "$TEMPD/zorin-os-keyring_1.1_all.deb"
-sudo apt install${apt_no_confirm} "$TEMPD/zorin-os-premium-keyring_1.0_all.deb"
-\rm -rf "$TEMPD"
-
+sudo chmod -v 764 "$TEMPD/zorin-os-keyring_1.1_all.deb"
+sudo chmod -v 764 "$TEMPD/zorin-os-premium-keyring_1.0_all.deb"
+echo "You may see an error like \"W: Download is performed unsandboxed as root as file '/tmp/tmp.<something>/zorin-os-premium-keyring_1.0_all.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)\""
+echo "I am aware of it and it does not seem to be a real error, in my testing it still works as expected even with the error."
+sleep 5
+sudo apt install ${apt_no_confirm} "$TEMPD/zorin-os-keyring_1.1_all.deb"
+sudo apt install ${apt_no_confirm} "$TEMPD/zorin-os-premium-keyring_1.0_all.deb"
 sleep 2
 
 echo ""
@@ -180,16 +180,16 @@ sudo apt-get update
 if [ "$version" = "16" ]; then
     # install 16 pro content
     if [ "$extra" = "true" ]; then
-        sudo apt-get install${apt_no_confirm} zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-16 zorin-sound-theme zorin-windows-app-support-installation-shortcut
+        sudo apt-get install ${apt_no_confirm} zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-16 zorin-sound-theme zorin-windows-app-support-installation-shortcut
     else
-        sudo apt-get install${apt_no_confirm} zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-icon-themes zorin-os-artwork zorin-os-keyring zorin-os-premium-keyring zorin-os-pro zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-wallpapers zorin-os-wallpapers-16
+        sudo apt-get install ${apt_no_confirm} zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-icon-themes zorin-os-artwork zorin-os-keyring zorin-os-premium-keyring zorin-os-pro zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-wallpapers zorin-os-wallpapers-16
     fi
 elif [ "$version" = "17" ]; then
     # install 17 pro content
     if [ "$extra" = "true" ]; then
-        sudo apt-get install${apt_no_confirm} zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-pro-wallpapers-17 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-16 zorin-os-wallpapers-17 zorin-sound-theme zorin-windows-app-support-installation-shortcut
+        sudo apt-get install ${apt_no_confirm} zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-pro-wallpapers-17 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-16 zorin-os-wallpapers-17 zorin-sound-theme zorin-windows-app-support-installation-shortcut
     else
-        sudo apt-get install${apt_no_confirm} zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-icon-themes zorin-os-artwork zorin-os-keyring zorin-os-premium-keyring zorin-os-pro zorin-os-pro-wallpapers zorin-os-pro-wallpapers-17 zorin-os-wallpapers zorin-os-wallpapers-17
+        sudo apt-get install ${apt_no_confirm} zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-icon-themes zorin-os-artwork zorin-os-keyring zorin-os-premium-keyring zorin-os-pro zorin-os-pro-wallpapers zorin-os-pro-wallpapers-17 zorin-os-wallpapers zorin-os-wallpapers-17
     fi
 else
     fail
