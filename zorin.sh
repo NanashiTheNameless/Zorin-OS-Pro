@@ -12,16 +12,16 @@ echo "  ███╔╝ ██║   ██║██████╔╝██║�
 echo " ███╔╝  ██║   ██║██╔══██╗██║██║╚██╗██║    ██║   ██║╚════██║    ██╔═══╝ ██╔══██╗██║   ██║"
 echo "███████╗╚██████╔╝██║  ██║██║██║ ╚████║    ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝"
 echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ "
-echo "|ZORIN-OS-PRO| |Script v9.0.2| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
+echo "|ZORIN-OS-PRO| |Script v9.0.3| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
 echo ""
 echo "(Please note this version ONLY works on Zorin 17 and 16)"
 echo ""
 echo "(to use this script on Zorin 16 add the -6 flag or -7 for zorin 17)"
 echo "(add -X for a lot extra content)"
 echo ""
-echo "THIS CODE AND ACCOMPANYING DOCUMENTATION WERE SIGNIFICANTLY OVERHAULED BY NamelessNanashi/NanashiTheNameless."
-echo "IF YOU GOT THIS CODE ELSEWHERE KNOW THAT THE CODE SHOULD NOT BE FULLY TRUSTED."
+echo "THIS CODE AND THE ACCOMPANYING DOCUMENTATION WERE SIGNIFICANTLY OVERHAULED BY NamelessNanashi/NanashiTheNameless."
 echo "https://github.com/NanashiTheNameless/Zorin-OS-Pro IS THE OFFICIAL SOURCE FOR THIS TOOL."
+echo "IF YOU GOT THIS CODE ELSEWHERE KNOW THAT THE CODE SHOULD NOT BE FULLY TRUSTED."
 echo ""
 
 sleep 8
@@ -137,6 +137,10 @@ if [ ! -e "$TEMPD" ]; then
     exit 1
 fi
 
+if [ -e "$TEMPD" ]; then
+    sudo chmod 777 "$TEMPD"
+fi
+
 echo ""
 echo "Adding Zorin's Package Keys..."
 echo ""
@@ -145,13 +149,9 @@ echo ""
 curl https://ppa.launchpadcontent.net/zorinos/stable/ubuntu/pool/main/z/zorin-os-keyring/zorin-os-keyring_1.1_all.deb --output $TEMPD/zorin-os-keyring_1.1_all.deb
 curl -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb --output $TEMPD/zorin-os-premium-keyring_1.0_all.deb
 # fix permissions of manually downloaded keyrings
-sudo chmod -v 764 "$TEMPD/zorin-os-keyring_1.1_all.deb"
-sudo chmod -v 764 "$TEMPD/zorin-os-premium-keyring_1.0_all.deb"
-echo ""
-echo "You may see an error like \"W: Download is performed unsandboxed as root as file '/tmp/tmp.<something>/zorin-os-premium-keyring_1.0_all.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)\""
-echo "I am aware of it and it does not seem to be a real error, in my testing it still works as expected even with the error."
-echo ""
-sleep 5
+sudo chmod 777 "$TEMPD/zorin-os-keyring_1.1_all.deb"
+sudo chmod 777 "$TEMPD/zorin-os-premium-keyring_1.0_all.deb"
+sleep 1
 sudo apt install ${apt_no_confirm} "$TEMPD/zorin-os-keyring_1.1_all.deb"
 sudo apt install ${apt_no_confirm} "$TEMPD/zorin-os-premium-keyring_1.0_all.deb"
 sleep 2
