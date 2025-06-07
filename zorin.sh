@@ -147,8 +147,10 @@ curl -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zori
 # fix permissions of manually downloaded keyrings
 sudo chmod -v 764 "$TEMPD/zorin-os-keyring_1.1_all.deb"
 sudo chmod -v 764 "$TEMPD/zorin-os-premium-keyring_1.0_all.deb"
+echo ""
 echo "You may see an error like \"W: Download is performed unsandboxed as root as file '/tmp/tmp.<something>/zorin-os-premium-keyring_1.0_all.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)\""
 echo "I am aware of it and it does not seem to be a real error, in my testing it still works as expected even with the error."
+echo ""
 sleep 5
 sudo apt install ${apt_no_confirm} "$TEMPD/zorin-os-keyring_1.1_all.deb"
 sudo apt install ${apt_no_confirm} "$TEMPD/zorin-os-premium-keyring_1.0_all.deb"
