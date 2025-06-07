@@ -29,7 +29,8 @@ function fail() {
 # Parse command line arguments for flag
 apt_no_confirm=""
 unattended="false"
-while getopts "67XU" opt; do
+use_apt="false"
+while getopts "67XAU" opt; do
   case $opt in
     6)
         version="16"
@@ -40,8 +41,12 @@ while getopts "67XU" opt; do
     X)
         extra="true"
     ;;
+    A)
+        use_apt="true"
+    ;;
     U)
         unattended="true"
+        use_apt="true"
         apt_no_confirm="-y"
     ;;
     esac
@@ -172,7 +177,7 @@ trap 'exit 1'                                         HUP INT PIPE QUIT TERM
 trap 'if [ -n "$TEMPD" ]; then rm -rf "$TEMPD"; fi'   EXIT
 
 # update packages
-if [ "$unattended" = "false" ]; then
+if [ ("$unattended" = "false") && ("$use_apt" = "false") ]; then
     sudo aptitude update
 else
     sudo apt-get update
@@ -181,6 +186,8 @@ fi
 function package_install() {
     if [ "$unattended" = "true" ]; then
         sudo apt-get install ${apt_no_confirm} "$@"
+    elif [ "$use_apt" = "true" ]; then
+        sudo apt-get install "$@"
     else
         sudo aptitude install "$@"
     fi
