@@ -2,7 +2,7 @@
 
 ## This script turns your Zorin OS CORE instance into a Zorin OS PRO instance
 
-You will have access to all Zorin OS Pro features
+You will have access to all Zorin OS Pro features.
 
 ### PLEASE NOTE: You will not receive support from https://zorin.com/. if you don't like that you can buy a copy.
 
@@ -46,10 +46,10 @@ curl -s -L https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/mai
 curl -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb --output zorin-os-premium-keyring_1.0_all.deb
 sudo apt install ./zorin-os-premium-keyring_1.0_all.deb
 ```
-It should be okay to ignore further errors
+It should be okay to ignore further errors.
 
 # Credits
 - NamelessNanashi/NanashiTheNameless For Overhauling And Adding Zorin OS 17 Support.
 - AdityaGarg8 For Adding The -U Functionality And Helping Me Notice And Fix A Few Oversights.
 - kauancvlcnt For The Original Code And The Idea.
-- [All Other Github Contributors For Their Appropreate Addidions/Commits](https://github.com/NanashiTheNameless/Zorin-OS-Pro/graphs/contributors)
+- [All Other Github Contributors For Their Appropriate Additions/Commits](https://github.com/NanashiTheNameless/Zorin-OS-Pro/graphs/contributors)
