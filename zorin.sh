@@ -2,13 +2,17 @@
 
 set -eu -o pipefail
 
+# Make sure the temp directory gets removed on script exit.
+trap 'exit 1'                                         HUP INT PIPE QUIT TERM
+trap 'if [ -n "$TEMPD" ]; then \rm -rf "$TEMPD"; fi'   EXIT
+
 echo "███████╗ ██████╗ ██████╗ ██╗███╗   ██╗     ██████╗ ███████╗    ██████╗ ██████╗  ██████╗ "
 echo "╚══███╔╝██╔═══██╗██╔══██╗██║████╗  ██║    ██╔═══██╗██╔════╝    ██╔══██╗██╔══██╗██╔═══██╗"
 echo "  ███╔╝ ██║   ██║██████╔╝██║██╔██╗ ██║    ██║   ██║███████╗    ██████╔╝██████╔╝██║   ██║"
 echo " ███╔╝  ██║   ██║██╔══██╗██║██║╚██╗██║    ██║   ██║╚════██║    ██╔═══╝ ██╔══██╗██║   ██║"
 echo "███████╗╚██████╔╝██║  ██║██║██║ ╚████║    ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝"
 echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ "
-echo "|ZORIN-OS-PRO| |Script v8.1.0| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
+echo "|ZORIN-OS-PRO| |Script v9.0.0| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
 echo ""
 echo "(Please note this version ONLY works on Zorin 17 and 16)"
 echo ""
@@ -31,7 +35,6 @@ function fail() {
 
 # Parse command line arguments for flag
 apt_no_confirm=""
-use_apt="false"
 while getopts "67XAU" opt; do
   case $opt in
     6)
@@ -43,12 +46,9 @@ while getopts "67XAU" opt; do
     X)
         extra="true"
     ;;
-    A)
-        use_apt="true"
     ;;
     U)
-        use_apt="true"
-        apt_no_confirm="-y"
+        apt_no_confirm=" -y"
     ;;
     esac
 done
@@ -65,10 +65,7 @@ echo "Please Enter your sudo password!"
 sudo -v
 
 # Install ca-certificates and aptitude
-sudo apt-get install ${apt_no_confirm} ca-certificates curl
-if [ "$use_apt" = "false" ]; then
-    sudo apt-get install ${apt_no_confirm} aptitude
-fi
+sudo apt-get install${apt_no_confirm} ca-certificates curl
 
 sleep 2
 
@@ -120,7 +117,7 @@ deb-src https://packages.zorinos.com/premium jammy main
 EOF
 }
 
-if [ "$version" = "16" ]; then   
+if [ "$version" = "16" ]; then
     # Add zorin16.list
     AddSources16
 elif [ "$version" = "17" ]; then
@@ -135,6 +132,12 @@ sleep 2
 # Create a temporary directory and store its name in a variable.
 TEMPD=$(mktemp -d)
 
+# Exit if the temp directory wasn't created successfully.
+if [ ! -e "$TEMPD" ]; then
+    >&2 echo "Failed to create temp directory"
+    exit 1
+fi
+
 echo ""
 echo "Adding Zorin's Package Keys..."
 echo ""
@@ -142,7 +145,8 @@ echo ""
 # manually add the keyrings
 curl https://ppa.launchpadcontent.net/zorinos/stable/ubuntu/pool/main/z/zorin-os-keyring/zorin-os-keyring_1.1_all.deb --output $TEMPD/zorin-os-keyring_1.1_all.deb
 curl -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb --output $TEMPD/zorin-os-premium-keyring_1.0_all.deb
-sudo apt install ${apt_no_confirm} "$TEMPD/zorin-os-premium-keyring_1.0_all.deb" "$TEMPD/zorin-os-keyring_1.1_all.deb"
+sudo apt install${apt_no_confirm} "$TEMPD/zorin-os-premium-keyring_1.0_all.deb" "$TEMPD/zorin-os-keyring_1.1_all.deb"
+\rm -rf "$TEMPD"
 
 sleep 2
 
@@ -160,51 +164,28 @@ Acquire
 
 EOF
 
-
 sleep 2
 
 echo ""
 echo "Adding premium content..."
 echo ""
 
-# Exit if the temp directory wasn't created successfully.
-if [ ! -e "$TEMPD" ]; then
-    >&2 echo "Failed to create temp directory"
-    exit 1
-fi
-
-# Make sure the temp directory gets removed on script exit.
-trap 'exit 1'                                         HUP INT PIPE QUIT TERM
-trap 'if [ -n "$TEMPD" ]; then rm -rf "$TEMPD"; fi'   EXIT
-
 # update packages
-if [ "$use_apt" = "true" ]; then
-    sudo apt-get update
-else
-    sudo aptitude update
-fi
-
-function package_install() {
-    if [ "$use_apt" = "true" ]; then
-        sudo apt-get install ${apt_no_confirm} "$@"
-    else
-        sudo aptitude install "$@"
-    fi
-}
+sudo apt-get update
 
 if [ "$version" = "16" ]; then
     # install 16 pro content
     if [ "$extra" = "true" ]; then
-        package_install zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-16 zorin-sound-theme zorin-windows-app-support-installation-shortcut
+        sudo apt-get install${apt_no_confirm} zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-16 zorin-sound-theme zorin-windows-app-support-installation-shortcut
     else
-        package_install zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-icon-themes zorin-os-artwork zorin-os-keyring zorin-os-premium-keyring zorin-os-pro zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-wallpapers zorin-os-wallpapers-16
+        sudo apt-get install${apt_no_confirm} zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-icon-themes zorin-os-artwork zorin-os-keyring zorin-os-premium-keyring zorin-os-pro zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-wallpapers zorin-os-wallpapers-16
     fi
 elif [ "$version" = "17" ]; then
     # install 17 pro content
     if [ "$extra" = "true" ]; then
-        package_install zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-pro-wallpapers-17 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-16 zorin-os-wallpapers-17 zorin-sound-theme zorin-windows-app-support-installation-shortcut
+        sudo apt-get install${apt_no_confirm} zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-pro-wallpapers-17 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-16 zorin-os-wallpapers-17 zorin-sound-theme zorin-windows-app-support-installation-shortcut
     else
-        package_install zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-icon-themes zorin-os-artwork zorin-os-keyring zorin-os-premium-keyring zorin-os-pro zorin-os-pro-wallpapers zorin-os-pro-wallpapers-17 zorin-os-wallpapers zorin-os-wallpapers-17
+        sudo apt-get install${apt_no_confirm} zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-icon-themes zorin-os-artwork zorin-os-keyring zorin-os-premium-keyring zorin-os-pro zorin-os-pro-wallpapers zorin-os-pro-wallpapers-17 zorin-os-wallpapers zorin-os-wallpapers-17
     fi
 else
     fail
