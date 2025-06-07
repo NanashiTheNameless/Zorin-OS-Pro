@@ -1,14 +1,10 @@
 # Zorin-OS-Pro
 
-#### Please do not use the original authors code, they have not adequately documented the functionality of the script nor the changes to notation made by my overhaul!
-
-#### More info can be seen here: https://github.com/PEAKYCOMMAND/Zorin-OS-Pro/commit/456414cea17f27051c4ef17ac16901b0d980c666
-
 ## This script turns your Zorin OS CORE instance into a Zorin OS PRO instance
 
-You will have access to all Zorin OS Pro features
+You will have access to all Zorin OS Pro features.
 
-### PLEASE NOTE: You will not receive support from https://zorin.com/ if you dont like that you can buy a copy.
+### PLEASE NOTE: You will not receive support from https://zorin.com/. if you don't like that you can buy a copy.
 
 ![Zorin OS Pro Appearance Menu](https://github.com/user-attachments/assets/a4feef94-c3da-4ddc-a3b9-19cd07250790)
 
@@ -21,9 +17,9 @@ You will have access to all Zorin OS Pro features
 [![Stargazers over time](https://starchart.cc/NanashiTheNameless/Zorin-OS-Pro.svg?variant=adaptive)](https://starchart.cc/NanashiTheNameless/Zorin-OS-Pro)
 
 # Installation:
-opy the command below, paste in your terminal, then put your password, then restart your computer when it completes and you will now be running the pro version Zorin OS
+Copy the command below, paste in your terminal, then put your password, then restart your computer when it completes and you will now be running the pro version of Zorin OS!
 
-### You can use `-U` to make it work on headless machnes or unattended
+### You can use `-U` to make it work on headless machines or do an unattended installation.
 
 ### For Zorin 16
 ```sh
@@ -50,10 +46,10 @@ curl -s -L https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/mai
 curl -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb --output zorin-os-premium-keyring_1.0_all.deb
 sudo apt install ./zorin-os-premium-keyring_1.0_all.deb
 ```
-It should be okay to ignore further errors
+It should be okay to ignore further errors.
 
 # Credits
-- NamelessNanashi/NanashiTheNameless For Overhauling And Adding Zorin OS 17 Support
-- AdityaGarg8 For Adding The -U Functionality And Helping Me Notice And Fix A Few Oversights
-- PEAKYCOMMAND For The Original Code And The Idea (please note, this dev should not be fully trusted)
-- [All Other Github Contributors For Their Appropreate Addidions/Commits](https://github.com/NanashiTheNameless/Zorin-OS-Pro/graphs/contributors)
+- NamelessNanashi/NanashiTheNameless For Overhauling And Adding Zorin OS 17 Support.
+- AdityaGarg8 For Adding The -U Functionality And Helping Me Notice And Fix A Few Oversights.
+- kauancvlcnt For The Original Code And The Idea.
+- [All Other Github Contributors For Their Appropriate Additions/Commits](https://github.com/NanashiTheNameless/Zorin-OS-Pro/graphs/contributors)
