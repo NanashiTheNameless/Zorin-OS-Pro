@@ -21,7 +21,7 @@ Copy the command below, paste in your terminal, then put your password, then res
 
 ### You can use `-U` to make it work on headless machines or do an unattended installation.
 
-### You can also ude `-A` to use apt-get instead of aptitude.
+### You can also use `-A` to use apt-get instead of aptitude.
 
 ### For Zorin 16
 ```sh
