@@ -177,7 +177,7 @@ trap 'exit 1'                                         HUP INT PIPE QUIT TERM
 trap 'if [ -n "$TEMPD" ]; then rm -rf "$TEMPD"; fi'   EXIT
 
 # update packages
-if [ ("$unattended" = "false") && ("$use_apt" = "false") ]; then
+if [ "$use_apt" = "false" ]; then
     sudo aptitude update
 else
     sudo apt-get update
