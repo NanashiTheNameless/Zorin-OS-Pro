@@ -178,10 +178,10 @@ trap 'exit 1'                                         HUP INT PIPE QUIT TERM
 trap 'if [ -n "$TEMPD" ]; then rm -rf "$TEMPD"; fi'   EXIT
 
 # update packages
-if [ "$use_apt" = "false" ]; then
-    sudo aptitude update
-else
+if [ "$use_apt" = "true" ]; then
     sudo apt-get update
+else
+    sudo aptitude update
 fi
 
 function package_install() {
