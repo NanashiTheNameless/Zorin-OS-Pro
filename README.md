@@ -21,6 +21,8 @@ Copy the command below, paste in your terminal, then put your password, then res
 
 ### You can use `-U` to make it work on headless machines or do an unattended installation.
 
+### You can also ude `-A` to use apt-get instead of aptitude.
+
 ### For Zorin 16
 ```sh
 curl -s -L https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh | bash -s -- -6
@@ -50,6 +52,6 @@ It should be okay to ignore further errors.
 
 # Credits
 - NamelessNanashi/NanashiTheNameless For Overhauling And Adding Zorin OS 17 Support.
-- AdityaGarg8 For Adding The -U Functionality And Helping Me Notice And Fix A Few Oversights.
+- AdityaGarg8 For Adding The -U Functionality, Adding The -A Functionality, And Helping Me Notice And Fix A Few Oversights.
 - kauancvlcnt For The Original Code And The Idea.
 - [All Other Github Contributors For Their Appropriate Additions/Commits](https://github.com/NanashiTheNameless/Zorin-OS-Pro/graphs/contributors)
