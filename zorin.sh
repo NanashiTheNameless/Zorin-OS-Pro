@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eu -o pipefail
+
 echo "███████╗ ██████╗ ██████╗ ██╗███╗   ██╗     ██████╗ ███████╗    ██████╗ ██████╗  ██████╗ "
 echo "╚══███╔╝██╔═══██╗██╔══██╗██║████╗  ██║    ██╔═══██╗██╔════╝    ██╔══██╗██╔══██╗██╔═══██╗"
 echo "  ███╔╝ ██║   ██║██████╔╝██║██╔██╗ ██║    ██║   ██║███████╗    ██████╔╝██████╔╝██║   ██║"
@@ -28,7 +30,6 @@ function fail() {
 
 # Parse command line arguments for flag
 apt_no_confirm=""
-unattended="false"
 use_apt="false"
 while getopts "67XAU" opt; do
   case $opt in
@@ -45,7 +46,6 @@ while getopts "67XAU" opt; do
         use_apt="true"
     ;;
     U)
-        unattended="true"
         use_apt="true"
         apt_no_confirm="-y"
     ;;
@@ -184,10 +184,8 @@ else
 fi
 
 function package_install() {
-    if [ "$unattended" = "true" ]; then
+    if [ "$use_apt" = "true" ]; then
         sudo apt-get install ${apt_no_confirm} "$@"
-    elif [ "$use_apt" = "true" ]; then
-        sudo apt-get install "$@"
     else
         sudo aptitude install "$@"
     fi
