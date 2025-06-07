@@ -65,7 +65,7 @@ sudo -v
 
 # Install ca-certificates and aptitude
 sudo apt-get install ${apt_no_confirm} ca-certificates curl
-if [ "$unattended" = "false" ]; then
+if [ "$use_apt" = "false" ]; then
     sudo apt-get install ${apt_no_confirm} aptitude
 fi
 
