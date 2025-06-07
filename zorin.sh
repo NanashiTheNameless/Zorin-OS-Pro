@@ -12,7 +12,7 @@ echo "  ███╔╝ ██║   ██║██████╔╝██║�
 echo " ███╔╝  ██║   ██║██╔══██╗██║██║╚██╗██║    ██║   ██║╚════██║    ██╔═══╝ ██╔══██╗██║   ██║"
 echo "███████╗╚██████╔╝██║  ██║██║██║ ╚████║    ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝"
 echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ "
-echo "|ZORIN-OS-PRO| |Script v9.0.0| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
+echo "|ZORIN-OS-PRO| |Script v9.0.1| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
 echo ""
 echo "(Please note this version ONLY works on Zorin 17 and 16)"
 echo ""
@@ -144,7 +144,12 @@ echo ""
 # manually add the keyrings
 curl https://ppa.launchpadcontent.net/zorinos/stable/ubuntu/pool/main/z/zorin-os-keyring/zorin-os-keyring_1.1_all.deb --output $TEMPD/zorin-os-keyring_1.1_all.deb
 curl -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb --output $TEMPD/zorin-os-premium-keyring_1.0_all.deb
-sudo apt install${apt_no_confirm} "$TEMPD/zorin-os-premium-keyring_1.0_all.deb" "$TEMPD/zorin-os-keyring_1.1_all.deb"
+# fix permissions of manually downloaded keyrings
+# otherwise it spits out "W: Download is performed unsandboxed as root as file '/tmp/tmp.<something>/zorin-os-premium-keyring_1.0_all.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)"
+sudo chmod -v 644 "$TEMPD/zorin-os-keyring_1.1_all.deb"
+sudo chmod -v 644 "$TEMPD/zorin-os-premium-keyring_1.0_all.deb"
+sudo apt install${apt_no_confirm} "$TEMPD/zorin-os-keyring_1.1_all.deb"
+sudo apt install${apt_no_confirm} "$TEMPD/zorin-os-premium-keyring_1.0_all.deb"
 \rm -rf "$TEMPD"
 
 sleep 2
