@@ -35,6 +35,7 @@ function fail() {
 
 # Parse command line arguments for flag
 apt_no_confirm=""
+extra="false"
 while getopts "67XU" opt; do
   case $opt in
     6)
@@ -63,7 +64,8 @@ echo "Please Enter your sudo password!"
 # Sudo -v so it always propts here
 sudo -v
 
-# Install ca-certificates and aptitude
+# Install ca-certificates and curl
+sudo apt-get update
 sudo apt-get install ${apt_no_confirm} ca-certificates curl
 
 sleep 2
