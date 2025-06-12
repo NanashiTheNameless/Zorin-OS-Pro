@@ -25,13 +25,19 @@ Copy the command below, paste in your terminal, then put your password, then res
 ### For Zorin 16
 
 ```sh
-curl -s -L https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh | bash -s -- -6
+curl -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
+chmod +x zorin.sh ; 
+bash zorin.sh -6 ; 
+rm zorin.sh
 ```
 
 ### For Zorin 17
 
 ```sh
-curl -s -L https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh | bash -s -- -7
+curl -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
+chmod +x zorin.sh ; 
+bash zorin.sh -7 ; 
+rm zorin.sh
 ```
 
 ## For A Lot of Extra Content
@@ -39,13 +45,19 @@ curl -s -L https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/mai
 ##### Zorin 16
 
 ```sh
-curl -s -L https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh | bash -s -- -6 -X
+curl -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
+chmod +x zorin.sh ; 
+bash zorin.sh -6 -X ; 
+rm zorin.sh
 ```
 
 ##### Zorin 17
 
 ```sh
-curl -s -L https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh | bash -s -- -7 -X
+curl -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
+chmod +x zorin.sh ; 
+bash zorin.sh -7 -X ; 
+rm zorin.sh
 ```
 
 ## If you face issues with "zorin-os-premium-keyring" install the deb manually using this command
