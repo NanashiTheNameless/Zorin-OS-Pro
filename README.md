@@ -6,15 +6,15 @@ You will have access to all Zorin OS Pro features.
 
 ### PLEASE NOTE: You will not receive support from https://zorin.com/. if you don't like that you can buy a copy.
 
-![Zorin OS Pro Appearance Menu](https://github.com/user-attachments/assets/a4feef94-c3da-4ddc-a3b9-19cd07250790)
+![Zorin OS Pro Appearance Menu](<https://github.com/user-attachments/assets/a4feef94-c3da-4ddc-a3b9-19cd07250790>)
 
-![Zorin OS Pro Wallpaper Menu](https://github.com/user-attachments/assets/eb4e6442-216b-483f-a01d-9866dc3100bc)
+![Zorin OS Pro Wallpaper Menu](<https://github.com/user-attachments/assets/eb4e6442-216b-483f-a01d-9866dc3100bc>)
 
 ### If you like the OS please consider supporting the original devs by buying a genuine copy!
 
 ## Stargazers over time
 
-[![Stargazers over time](https://starchart.cc/NanashiTheNameless/Zorin-OS-Pro.svg?variant=adaptive)](https://starchart.cc/NanashiTheNameless/Zorin-OS-Pro)
+[![Stargazers over time](<https://starchart.cc/NanashiTheNameless/Zorin-OS-Pro.svg?variant=adaptive>)](<https://starchart.cc/NanashiTheNameless/Zorin-OS-Pro>)
 
 # Installation:
 
@@ -74,4 +74,4 @@ It should be okay to ignore further errors.
 - NamelessNanashi/NanashiTheNameless For Overhauling And Adding Zorin OS 17 Support.
 - AdityaGarg8 For Adding The -U Functionality, And Helping Me Notice And Fix many Oversights.
 - kauancvlcnt For The Original Code And The Idea.
-- [All Other Github Contributors For Their Appropriate Additions/Commits](https://github.com/NanashiTheNameless/Zorin-OS-Pro/graphs/contributors)
+- [All Other Github Contributors For Their Appropriate Additions/Commits](<https://github.com/NanashiTheNameless/Zorin-OS-Pro/graphs/contributors>)
