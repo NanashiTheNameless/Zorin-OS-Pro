@@ -3,8 +3,24 @@
 set -o pipefail
 
 # Make sure the temp directory gets removed on script exit.
-trap 'exit 1'                                          HUP INT PIPE QUIT TERM
-trap 'if [ -n "$TEMPD" ]; then \rm -rf "$TEMPD"; fi'   EXIT
+trap 'exit 1' HUP INT PIPE QUIT TERM
+trap '
+if [ -n "$TEMPD" ]; then
+    case "$TEMPD" in
+        /tmp/*)
+            if command rm -rf "$TEMPD"; then
+                echo "Cleaned up temporary directory \"$TEMPD\" successfully!"
+            fi
+            ;;
+        *)
+            echo "Warning: TEMPD=\"$TEMPD\" is outside /tmp/, refusing to delete for safety."
+            ;;
+    esac
+fi
+if [ -e "$TEMPD" ]; then
+    echo "Temp Directory \"$TEMPD\" was not deleted correctly; you need to manually remove it!"
+fi
+' EXIT
 
 echo "███████╗ ██████╗ ██████╗ ██╗███╗   ██╗     ██████╗ ███████╗    ██████╗ ██████╗  ██████╗ "
 echo "╚══███╔╝██╔═══██╗██╔══██╗██║████╗  ██║    ██╔═══██╗██╔════╝    ██╔══██╗██╔══██╗██╔═══██╗"
@@ -12,7 +28,7 @@ echo "  ███╔╝ ██║   ██║██████╔╝██║�
 echo " ███╔╝  ██║   ██║██╔══██╗██║██║╚██╗██║    ██║   ██║╚════██║    ██╔═══╝ ██╔══██╗██║   ██║"
 echo "███████╗╚██████╔╝██║  ██║██║██║ ╚████║    ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝"
 echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ "
-echo "|ZORIN-OS-PRO| |Script v9.0.4| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
+echo "|ZORIN-OS-PRO| |Script v9.0.4.1| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
 echo ""
 echo "(Please note this version ONLY works on Zorin 17 and 16)"
 echo ""
