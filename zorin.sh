@@ -28,7 +28,7 @@ echo "  ███╔╝ ██║   ██║██████╔╝██║�
 echo " ███╔╝  ██║   ██║██╔══██╗██║██║╚██╗██║    ██║   ██║╚════██║    ██╔═══╝ ██╔══██╗██║   ██║"
 echo "███████╗╚██████╔╝██║  ██║██║██║ ╚████║    ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝"
 echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ "
-echo "|ZORIN-OS-PRO| |Script v9.0.4.1| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
+echo "|ZORIN-OS-PRO| |Script v9.0.4.2| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
 echo ""
 echo "(Please note this version ONLY works on Zorin 17 and 16)"
 echo ""
@@ -164,8 +164,8 @@ echo "Adding Zorin's Package Keys..."
 echo ""
 
 # manually add the keyrings
-curl https://ppa.launchpadcontent.net/zorinos/stable/ubuntu/pool/main/z/zorin-os-keyring/zorin-os-keyring_1.1_all.deb --output $TEMPD/zorin-os-keyring_1.1_all.deb
-curl -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb --output $TEMPD/zorin-os-premium-keyring_1.0_all.deb
+curl -H 'DNT: 1' -H 'Sec-GPC: 1' https://ppa.launchpadcontent.net/zorinos/stable/ubuntu/pool/main/z/zorin-os-keyring/zorin-os-keyring_1.1_all.deb --output $TEMPD/zorin-os-keyring_1.1_all.deb
+curl -H 'DNT: 1' -H 'Sec-GPC: 1' -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb --output $TEMPD/zorin-os-premium-keyring_1.0_all.deb
 # fix permissions of manually downloaded keyrings
 sudo chmod 777 "$TEMPD/zorin-os-keyring_1.1_all.deb"
 sudo chmod 777 "$TEMPD/zorin-os-premium-keyring_1.0_all.deb"
