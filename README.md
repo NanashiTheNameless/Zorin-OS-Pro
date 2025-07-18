@@ -21,7 +21,7 @@ Copy the command below, paste in your terminal, enter your password when prompte
 ### For Zorin 16
 
 ```sh
-curl -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
+curl -H 'DNT: 1' -H 'Sec-GPC: 1' -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
 chmod +x zorin.sh ; 
 bash zorin.sh -6 ; 
 rm zorin.sh
@@ -30,7 +30,7 @@ rm zorin.sh
 ### For Zorin 17
 
 ```sh
-curl -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
+curl -H 'DNT: 1' -H 'Sec-GPC: 1' -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
 chmod +x zorin.sh ; 
 bash zorin.sh -7 ; 
 rm zorin.sh
@@ -41,7 +41,7 @@ rm zorin.sh
 ##### Zorin 16
 
 ```sh
-curl -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
+curl -H 'DNT: 1' -H 'Sec-GPC: 1' -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
 chmod +x zorin.sh ; 
 bash zorin.sh -6 -X ; 
 rm zorin.sh
@@ -50,7 +50,7 @@ rm zorin.sh
 ##### Zorin 17
 
 ```sh
-curl -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
+curl -H 'DNT: 1' -H 'Sec-GPC: 1' -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
 chmod +x zorin.sh ; 
 bash zorin.sh -7 -X ; 
 rm zorin.sh
@@ -59,7 +59,7 @@ rm zorin.sh
 ## If you face issues with the "zorin-os-premium-keyring" package try installing the deb manually using this command.
 
 ```sh
-curl -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb --output zorin-os-premium-keyring_1.0_all.deb
+curl -H 'DNT: 1' -H 'Sec-GPC: 1' -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb --output zorin-os-premium-keyring_1.0_all.deb
 sudo apt install ./zorin-os-premium-keyring_1.0_all.deb
 ```
 
