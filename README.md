@@ -77,7 +77,6 @@ It should be okay to ignore further errors.
 
 # Credits
 
-- NamelessNanashi/NanashiTheNameless For Overhauling And Adding Zorin OS 17 Support.
-- AdityaGarg8 For Adding The -U Functionality, And Helping Me Notice And Fix many Oversights.
-- kauancvlcnt For The Original Code And The Idea.
-- [All Other Github Contributors For Their Appropriate Additions/Commits](<https://github.com/NanashiTheNameless/Zorin-OS-Pro/graphs/contributors>)
+[All Major Contributors](<https://github.com/NanashiTheNameless/Zorin-OS-Pro/blob/main/CONTRIBUTORS.md>)
+
+[All Other Contributors](<https://github.com/NanashiTheNameless/Zorin-OS-Pro/graphs/contributors>)
