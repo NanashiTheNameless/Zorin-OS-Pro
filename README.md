@@ -2,7 +2,7 @@
 
 ## This script turns your Zorin OS CORE instance into a Zorin OS PRO instance!
 
-## If you like the OS please consider supporting the original devs by buying a genuine copy!
+## [If you like the OS please consider supporting the original devs by buying a genuine copy!](<https://zorin.com/os/why-pay/>)
 
 ### PLEASE NOTE: You will not receive support from <https://zorin.com/>. if you don't like that you can buy a copy.
 
