@@ -36,6 +36,15 @@ bash zorin.sh -7 ;
 rm zorin.sh
 ```
 
+### For Zorin 18
+
+```sh
+curl -H 'DNT: 1' -H 'Sec-GPC: 1' -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
+chmod +x zorin.sh ; 
+bash zorin.sh -8 ; 
+rm zorin.sh
+```
+
 ## For A Lot of Extra Content
 
 ##### Zorin 16
@@ -56,11 +65,29 @@ bash zorin.sh -7 -X ;
 rm zorin.sh
 ```
 
+##### Zorin 18
+
+```sh
+curl -H 'DNT: 1' -H 'Sec-GPC: 1' -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
+chmod +x zorin.sh ; 
+bash zorin.sh -8 -X ; 
+rm zorin.sh
+```
+
 ## If you face issues with the "zorin-os-premium-keyring" package try installing the deb manually using this command.
+
+##### Zorin 17
 
 ```sh
 curl -H 'DNT: 1' -H 'Sec-GPC: 1' -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb --output zorin-os-premium-keyring_1.0_all.deb
 sudo apt install ./zorin-os-premium-keyring_1.0_all.deb
+```
+
+##### Zorin 18
+
+```sh
+curl -H 'DNT: 1' -H 'Sec-GPC: 1' -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.1_all.deb --output zorin-os-premium-keyring_1.1_all.deb
+sudo apt install ./zorin-os-premium-keyring_1.1_all.deb
 ```
 
 It should be okay to ignore further errors.
