@@ -32,7 +32,7 @@ echo "|ZORIN-OS-PRO| |Script v9.1.0.0| |Overhauled & Maintained By NamelessNanas
 echo ""
 echo "(Please note this version ONLY works on Zorin 18 Beta, 17, and 16)"
 echo ""
-echo "(to use this script on Zorin 16 add the -6 flag or -7 for zorin 17 or -8 for zorin 18)"
+echo "(to use this script on Zorin 16 add the -6 flag, -7 for zorin 17, or -8 for zorin 18)"
 echo "(add -X for a lot extra content)"
 echo ""
 echo "THIS CODE AND THE ACCOMPANYING DOCUMENTATION WERE SIGNIFICANTLY OVERHAULED BY NamelessNanashi/NanashiTheNameless."
