@@ -196,7 +196,11 @@ echo ""
 
 # manually add the keyrings
 curl -H 'DNT: 1' -H 'Sec-GPC: 1' https://ppa.launchpadcontent.net/zorinos/stable/ubuntu/pool/main/z/zorin-os-keyring/zorin-os-keyring_1.1_all.deb --output "$TEMPD/zorin-os-keyring_1.1_all.deb"
-curl -H 'DNT: 1' -H 'Sec-GPC: 1' -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.1_all.deb --output "$TEMPD/zorin-os-premium-keyring_1.1_all.deb" # for some reason ZorinOS 18 uses keyring v1.1, keyring v1.0 doesn't work
+if [ "$version" = "18" ]; then
+    curl -H 'DNT: 1' -H 'Sec-GPC: 1' -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.1_all.deb --output "$TEMPD/zorin-os-premium-keyring_all.deb" # for some reason ZorinOS 18 uses keyring v1.1, keyring v1.0 doesn't work
+else
+    curl -H 'DNT: 1' -H 'Sec-GPC: 1' -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb --output "$TEMPD/zorin-os-premium-keyring_all.deb"
+fi
 # fix permissions of manually downloaded keyrings
 sudo chmod 777 "$TEMPD/zorin-os-keyring_1.1_all.deb"
 sudo chmod 777 "$TEMPD/zorin-os-premium-keyring_1.1_all.deb"
