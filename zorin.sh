@@ -52,7 +52,7 @@ function fail() {
 # Parse command line arguments for flag
 apt_no_confirm=""
 extra="false"
-while getopts "67XU" opt; do
+while getopts "678XU" opt; do
   case $opt in
     6)
         version="16"
