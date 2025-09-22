@@ -206,7 +206,7 @@ sudo chmod 777 "$TEMPD/zorin-os-keyring_1.1_all.deb"
 sudo chmod 777 "$TEMPD/zorin-os-premium-keyring_all.deb"
 sleep 1
 sudo apt install ${apt_no_confirm} "$TEMPD/zorin-os-keyring_1.1_all.deb"
-sudo apt install ${apt_no_confirm} "$TEMPD/zorin-os-premium-keyring_1.1_all.deb"
+sudo apt install ${apt_no_confirm} "$TEMPD/zorin-os-premium-keyring_all.deb"
 sleep 2
 
 echo ""
