@@ -28,7 +28,7 @@ echo "  ███╔╝ ██║   ██║██████╔╝██║�
 echo " ███╔╝  ██║   ██║██╔══██╗██║██║╚██╗██║    ██║   ██║╚════██║    ██╔═══╝ ██╔══██╗██║   ██║"
 echo "███████╗╚██████╔╝██║  ██║██║██║ ╚████║    ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝"
 echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ "
-echo "|ZORIN-OS-PRO| |Script v9.1.0.0| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
+echo "|ZORIN-OS-PRO| |Script v9.1.0.1| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
 echo ""
 echo "(Please note this version ONLY works on Zorin 18 Beta*, 17, and 16)"
 echo ""
@@ -97,9 +97,9 @@ echo "Updating the default sources.list for Zorin's custom resources..."
 echo ""
 
 function AddSources16() {
-sudo \rm -f /etc/apt/sources.list.d/zorin.list
-sudo \touch /etc/apt/sources.list.d/zorin.list
-sudo \tee /etc/apt/sources.list.d/zorin.list > /dev/null << 'EOF'
+sudo rm -f /etc/apt/sources.list.d/zorin.list
+sudo touch /etc/apt/sources.list.d/zorin.list
+sudo tee /etc/apt/sources.list.d/zorin.list > /dev/null << 'EOF'
 deb https://packages.zorinos.com/stable focal main
 deb-src https://packages.zorinos.com/stable focal main
 
@@ -119,9 +119,9 @@ EOF
 }
 
 function AddSources17() {
-sudo \rm -f /etc/apt/sources.list.d/zorin.list
-sudo \touch /etc/apt/sources.list.d/zorin.list
-sudo \tee /etc/apt/sources.list.d/zorin.list > /dev/null << 'EOF'
+sudo rm -f /etc/apt/sources.list.d/zorin.list
+sudo touch /etc/apt/sources.list.d/zorin.list
+sudo tee /etc/apt/sources.list.d/zorin.list > /dev/null << 'EOF'
 deb https://packages.zorinos.com/stable jammy main
 deb-src https://packages.zorinos.com/stable jammy main
 
@@ -141,9 +141,9 @@ EOF
 }
 
 function AddSources18() {
-sudo \rm -f /etc/apt/sources.list.d/zorin.list
-sudo \touch /etc/apt/sources.list.d/zorin.list
-sudo \tee /etc/apt/sources.list.d/zorin.list > /dev/null << 'EOF'
+sudo rm -f /etc/apt/sources.list.d/zorin.list
+sudo touch /etc/apt/sources.list.d/zorin.list
+sudo tee /etc/apt/sources.list.d/zorin.list > /dev/null << 'EOF'
 deb https://packages.zorinos.com/stable noble main
 deb-src https://packages.zorinos.com/stable noble main
 
