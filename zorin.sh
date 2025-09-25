@@ -77,7 +77,7 @@ while getopts "678XU" opt; do
     *)
         fail
     ;;
-    esac
+  esac
 done
 if [ -z ${version+x} ] ; then fail; fi
 
