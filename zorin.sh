@@ -219,6 +219,7 @@ echo "Adding premium flags..."
 echo ""
 
 # introduce premium user agent
+sudo rm -f /etc/apt/apt.conf.d/99zorin-os-premium-user-agent
 sudo touch /etc/apt/apt.conf.d/99zorin-os-premium-user-agent
 sudo tee /etc/apt/apt.conf.d/99zorin-os-premium-user-agent > /dev/null << 'EOF'
 Acquire
