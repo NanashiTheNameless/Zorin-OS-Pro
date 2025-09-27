@@ -197,6 +197,8 @@ else
     fail
 fi
 
+sleep 2
+
 # Create a temporary directory and store its name in a variable.
 TEMPD=$(mktemp -d)
 
