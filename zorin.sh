@@ -283,7 +283,8 @@ echo ""
 # Update packages
 if ! sudo apt-get update; then
     echo "Error: Failed to update apt repositories after adding sources."
-    exit 1
+    # This should be non-blocking
+    # exit 1
 fi
 
 if [ "$version" = "16" ]; then
