@@ -107,11 +107,13 @@ echo ""
 # Install ca-certificates and curl (not strictly necessary)
 if ! sudo apt-get update; then
     echo "Error: Failed to update apt repositories."
-    exit 1
+    # This should be non-blocking
+    # exit 1
 fi
 if ! sudo apt-get install ${apt_no_confirm} ca-certificates curl; then
     echo "Error: Failed to install dependencies."
-    exit 1
+    # This should be non-blocking
+    # exit 1
 fi
 
 echo ""
