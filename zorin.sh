@@ -42,7 +42,7 @@ echo "ZorinOS 16 Core use the -6 flag"
 echo "ZorinOS 17 Core use the -7 flag"
 echo "ZorinOS 18 Core use the -8 flag"
 echo ""
-echo "If a flag is not speficied the script will try to guess"
+echo "If a version flag is not speficied the script will try to guess"
 echo ""
 echo "(add -X for a lot of extra content, Recommended)"
 echo "(add -U for unattended mode, Not recommended)"
@@ -110,12 +110,10 @@ echo ""
 if ! sudo apt-get update; then
     echo "Error: Failed to update apt repositories."
     # This should be non-blocking
-    # exit 1
 fi
 if ! sudo apt-get install ${apt_no_confirm} ca-certificates curl; then
     echo "Error: Failed to install dependencies."
     # This should be non-blocking
-    # exit 1
 fi
 
 echo ""
@@ -256,7 +254,7 @@ sudo chmod 644 "$TEMPD/zorin-os-premium-keyring_all.deb"
 
 if ! sudo apt --no-install-recommends install ${apt_no_confirm} "$TEMPD/zorin-os-keyring_1.1_all.deb"; then
     echo "Error: Failed to install Zorin OS keyring."
-    exit 1
+    # This should be non-blocking
 fi
 if ! sudo apt --no-install-recommends install ${apt_no_confirm} "$TEMPD/zorin-os-premium-keyring_all.deb"; then
     echo "Error: Failed to install premium keyring."
@@ -286,19 +284,18 @@ echo ""
 if ! sudo apt-get update; then
     echo "Error: Failed to update apt repositories after adding sources."
     # This should be non-blocking
-    # exit 1
 fi
 
 if [ "$version" = "16" ]; then
     # install 16 pro content
     if [ "$extra" = "true" ]; then
         if ! sudo apt-get install ${apt_no_confirm} zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-12 zorin-os-wallpapers-15 zorin-os-wallpapers-16 zorin-sound-theme zorin-windows-app-support-installation-shortcut; then
-            echo "Error: Failed to install packages."
+            echo "Error: Failed to install packages. (16 Extra)"
             exit 1
         fi
     else
         if ! sudo apt-get --no-install-recommends install ${apt_no_confirm} zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-icon-themes zorin-os-artwork zorin-os-keyring zorin-os-premium-keyring zorin-os-pro zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-wallpapers zorin-os-wallpapers-16; then
-            echo "Error: Failed to install packages."
+            echo "Error: Failed to install packages. (16)"
             exit 1
         fi
     fi
@@ -306,12 +303,12 @@ elif [ "$version" = "17" ]; then
     # install 17 pro content
     if [ "$extra" = "true" ]; then
         if ! sudo apt-get install ${apt_no_confirm} zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-pro-wallpapers-17 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-12 zorin-os-wallpapers-15 zorin-os-wallpapers-16 zorin-os-wallpapers-17 zorin-sound-theme zorin-windows-app-support-installation-shortcut; then
-            echo "Error: Failed to install packages."
+            echo "Error: Failed to install packages. (17 extra)"
             exit 1
         fi
     else
         if ! sudo apt-get --no-install-recommends install ${apt_no_confirm} zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-icon-themes zorin-os-artwork zorin-os-keyring zorin-os-premium-keyring zorin-os-pro zorin-os-pro-wallpapers zorin-os-pro-wallpapers-17 zorin-os-wallpapers zorin-os-wallpapers-17; then
-            echo "Error: Failed to install packages."
+            echo "Error: Failed to install packages. (17)"
             exit 1
         fi
     fi
@@ -319,12 +316,12 @@ elif [ "$version" = "18" ]; then
     # install 18 pro content
     if [ "$extra" = "true" ]; then
         if ! sudo apt-get install ${apt_no_confirm} zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-pro-wallpapers-17 zorin-os-pro-wallpapers-18 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-12 zorin-os-wallpapers-15 zorin-os-wallpapers-16 zorin-os-wallpapers-17 zorin-os-wallpapers-18 zorin-sound-theme zorin-windows-app-support-installation-shortcut; then
-            echo "Error: Failed to install packages."
+            echo "Error: Failed to install packages. (18 extra)"
             exit 1
         fi
     else
         if ! sudo apt-get --no-install-recommends install ${apt_no_confirm} zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-icon-themes zorin-os-artwork zorin-os-keyring zorin-os-premium-keyring zorin-os-pro zorin-os-pro-wallpapers zorin-os-pro-wallpapers-18 zorin-os-wallpapers zorin-os-wallpapers-18; then
-            echo "Error: Failed to install packages."
+            echo "Error: Failed to install packages. (18)"
             exit 1
         fi
     fi
