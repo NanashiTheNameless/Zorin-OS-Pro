@@ -33,7 +33,7 @@ echo "  ███╔╝ ██║   ██║██████╔╝██║�
 echo " ███╔╝  ██║   ██║██╔══██╗██║██║╚██╗██║    ██║   ██║╚════██║    ██╔═══╝ ██╔══██╗██║   ██║"
 echo "███████╗╚██████╔╝██║  ██║██║██║ ╚████║    ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝"
 echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ "
-echo "|ZORIN-OS-PRO| |Script v9.2.0.0| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
+echo "|ZORIN-OS-PRO| |Script v9.2.0.1| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
 echo ""
 echo "(Please note this version ONLY works on ZorinOS 18 Core*, ZorinOS 17 Core, and ZorinOS 16 Core)"
 echo ""
@@ -273,8 +273,6 @@ if ! sudo apt-get update; then
     echo "Error: Failed to update apt repositories after adding sources."
     # This should be non-blocking
 fi
-
-
 
 if [ "$version" = "16" ]; then
     # install 16 pro content
