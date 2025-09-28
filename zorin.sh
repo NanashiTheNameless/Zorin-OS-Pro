@@ -211,7 +211,7 @@ if ! curl -H 'DNT: 1' -H 'Sec-GPC: 1' https://ppa.launchpadcontent.net/zorinos/s
     echo "Error: Failed to download Zorin OS keyring."
     exit 1
 fi
-if [ ! -s "$TEMPD/zorin-os-keyring_1.1_all.deb" ]; then
+if [ ! -s "$TEMPD/zorin-os-keyring_1.1+1_all.deb" ]; then
     echo "Error: Downloaded Zorin OS keyring file is empty or missing."
     exit 1
 fi
@@ -237,10 +237,10 @@ else
 fi
 
 # Fix permissions of manually downloaded keyrings
-sudo chmod 644 "$TEMPD/zorin-os-keyring_1.1_all.deb"
+sudo chmod 644 "$TEMPD/zorin-os-keyring_1.1+1_all.deb"
 sudo chmod 644 "$TEMPD/zorin-os-premium-keyring_all.deb"
 
-if ! sudo apt --no-install-recommends install ${apt_no_confirm} "$TEMPD/zorin-os-keyring_1.1_all.deb"; then
+if ! sudo apt --no-install-recommends install ${apt_no_confirm} "$TEMPD/zorin-os-keyring_1.1+1_all.deb"; then
     echo "Error: Failed to install Zorin OS keyring."
     # This should be non-blocking
 fi
