@@ -13,10 +13,10 @@ if [ -n "$TEMPD" ]; then
             else
                 echo "Temp Directory \"$TEMPD\" was not deleted correctly; you need to manually remove it!"
             fi
-            ;;
+        ;;
         *)
             echo "Warning: TEMPD=\"$TEMPD\" is outside /tmp/, refusing to delete for safety."
-            ;;
+        ;;
     esac
 fi
 ' EXIT
