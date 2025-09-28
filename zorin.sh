@@ -66,24 +66,12 @@ apt_no_confirm=""
 extra="false"
 while getopts "678XU" opt; do
   case $opt in
-    6)
-        version="16"
-    ;;
-    7)
-        version="17"
-    ;;
-    8)
-        version="18"
-    ;;
-    X)
-        extra="true"
-    ;;
-    U)
-        apt_no_confirm="-y"
-    ;;
-    *)
-        fail
-    ;;
+    6) version="16" ;;
+    7) version="17" ;;
+    8) version="18" ;;
+    X) extra="true" ;;
+    U) apt_no_confirm="-y" ;;
+    *) fail ;;
   esac
 done
 
@@ -121,7 +109,7 @@ echo "Updating the default sources.list for Zorin's custom resources..."
 echo ""
 
 function AddSources16() {
-sudo cp /etc/apt/sources.list.d/zorin.list /etc/apt/sources.list.d/zorin.list.bak 2>/dev/null || true
+sudo cp -f /etc/apt/sources.list.d/zorin.list /etc/apt/sources.list.d/zorin.list.bak 2>/dev/null || true
 sudo rm -f /etc/apt/sources.list.d/zorin.list
 sudo touch /etc/apt/sources.list.d/zorin.list
 sudo tee /etc/apt/sources.list.d/zorin.list > /dev/null << 'EOF'
@@ -144,7 +132,7 @@ EOF
 }
 
 function AddSources17() {
-sudo cp /etc/apt/sources.list.d/zorin.list /etc/apt/sources.list.d/zorin.list.bak 2>/dev/null || true
+sudo cp -f /etc/apt/sources.list.d/zorin.list /etc/apt/sources.list.d/zorin.list.bak 2>/dev/null || true
 sudo rm -f /etc/apt/sources.list.d/zorin.list
 sudo touch /etc/apt/sources.list.d/zorin.list
 sudo tee /etc/apt/sources.list.d/zorin.list > /dev/null << 'EOF'
@@ -167,7 +155,7 @@ EOF
 }
 
 function AddSources18() {
-sudo cp /etc/apt/sources.list.d/zorin.list /etc/apt/sources.list.d/zorin.list.bak 2>/dev/null || true
+sudo cp -f /etc/apt/sources.list.d/zorin.list /etc/apt/sources.list.d/zorin.list.bak 2>/dev/null || true
 sudo rm -f /etc/apt/sources.list.d/zorin.list
 sudo touch /etc/apt/sources.list.d/zorin.list
 sudo tee /etc/apt/sources.list.d/zorin.list > /dev/null << 'EOF'
@@ -219,7 +207,7 @@ echo "Adding Zorin's Package Keys..."
 echo ""
 
 # Manually add the keyrings
-if ! curl -H 'DNT: 1' -H 'Sec-GPC: 1' https://ppa.launchpadcontent.net/zorinos/stable/ubuntu/pool/main/z/zorin-os-keyring/zorin-os-keyring_1.1_all.deb --output "$TEMPD/zorin-os-keyring_1.1_all.deb"; then
+if ! curl -H 'DNT: 1' -H 'Sec-GPC: 1' https://ppa.launchpadcontent.net/zorinos/stable/ubuntu/pool/main/z/zorin-os-keyring/zorin-os-keyring_1.1+1_all.deb --output "$TEMPD/zorin-os-keyring_1.1+1_all.deb"; then
     echo "Error: Failed to download Zorin OS keyring."
     exit 1
 fi
