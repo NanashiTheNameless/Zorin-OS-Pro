@@ -18,59 +18,25 @@ Copy the command below, paste in your terminal, enter your password when prompte
 
 ### You can use the `-U` flag to do an unattended installation if needed.
 
-### For Zorin 16
+### It is reccomended to use `-6`, `-7`, or `-8`, the script will try to guess if not specified but isnt perfect.
+
+### For Zorin OS Core
 
 ```sh
 curl -H 'DNT: 1' -H 'Sec-GPC: 1' -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
 chmod +x zorin.sh ; 
-bash zorin.sh -6 ; 
-rm zorin.sh
-```
-
-### For Zorin 17
-
-```sh
-curl -H 'DNT: 1' -H 'Sec-GPC: 1' -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
-chmod +x zorin.sh ; 
-bash zorin.sh -7 ; 
-rm zorin.sh
-```
-
-### For Zorin 18
-
-```sh
-curl -H 'DNT: 1' -H 'Sec-GPC: 1' -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
-chmod +x zorin.sh ; 
-bash zorin.sh -8 ; 
+bash zorin.sh ; 
 rm zorin.sh
 ```
 
 ## For A Lot of Extra Content
 
-##### Zorin 16
+### For Zorin OS Core
 
 ```sh
 curl -H 'DNT: 1' -H 'Sec-GPC: 1' -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
 chmod +x zorin.sh ; 
-bash zorin.sh -6 -X ; 
-rm zorin.sh
-```
-
-##### Zorin 17
-
-```sh
-curl -H 'DNT: 1' -H 'Sec-GPC: 1' -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
-chmod +x zorin.sh ; 
-bash zorin.sh -7 -X ; 
-rm zorin.sh
-```
-
-##### Zorin 18
-
-```sh
-curl -H 'DNT: 1' -H 'Sec-GPC: 1' -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
-chmod +x zorin.sh ; 
-bash zorin.sh -8 -X ; 
+bash zorin.sh -X ; 
 rm zorin.sh
 ```
 
