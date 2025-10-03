@@ -23,10 +23,7 @@ Copy the command below, paste in your terminal, enter your password when prompte
 ### For Zorin OS Core
 
 ```sh
-curl -H 'DNT: 1' -H 'Sec-GPC: 1' -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
-chmod +x zorin.sh ; 
-bash zorin.sh ; 
-rm zorin.sh
+bash <(curl -H 'DNT: 1' -H 'Sec-GPC: 1' -fsSL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh)
 ```
 
 ## For A Lot of Extra Content
@@ -34,10 +31,7 @@ rm zorin.sh
 ### For Zorin OS Core
 
 ```sh
-curl -H 'DNT: 1' -H 'Sec-GPC: 1' -sL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh -o zorin.sh ; 
-chmod +x zorin.sh ; 
-bash zorin.sh -X ; 
-rm zorin.sh
+bash <(curl -H 'DNT: 1' -H 'Sec-GPC: 1' -fsSL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh) -X
 ```
 
 ## If you face issues with the "zorin-os-premium-keyring" package try installing the deb manually using this command.
