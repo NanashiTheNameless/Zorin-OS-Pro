@@ -16,19 +16,15 @@ You should have access to all Zorin OS Pro features.
 
 Copy the command below, paste in your terminal, enter your password when prompted, follow the scripts' prompts, and reboow when it tells you to. You should now be running the pro version of Zorin OS!
 
-### You can use the `-U` flag to do an unattended installation if needed.
+**You can use the `-U` flag to do an unattended installation if needed.**
 
-### It is reccomended to use `-6`, `-7`, or `-8`, the script will try to guess if not specified but isnt perfect.
-
-### For Zorin OS Core
+## For The Minimum Additional Content (Recommended)
 
 ```sh
 bash <(curl -H 'DNT: 1' -H 'Sec-GPC: 1' -fsSL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh)
 ```
 
 ## For A Lot of Extra Content
-
-### For Zorin OS Core
 
 ```sh
 bash <(curl -H 'DNT: 1' -H 'Sec-GPC: 1' -fsSL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh) -X
