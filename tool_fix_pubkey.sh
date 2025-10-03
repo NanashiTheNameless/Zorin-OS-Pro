@@ -2,7 +2,7 @@
 
 #################################################################################
 echo ""
-echo "This tool is not stable/not safe only use this if you know what you doing!"
+echo "This tool is not stable/not safe, only use this if you know what you doing!"
 echo "(you will need to edit this script to enable it)"
 echo ""
 #################################################################################
