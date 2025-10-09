@@ -91,6 +91,7 @@ body:
       label: "Zorin OS version"
       description: "Which version are you on?"
       options:
+        - "Other / Unsure"
         - "16 Core"
         - "16.1 Core"
         - "16.2 Core"
@@ -104,11 +105,10 @@ body:
 #         - "18.2 Core"
 #         - "18.3 Core"
         - "Beta release"
-        - "Other / Unsure"
     validations:
       required: true
 
-  - type: input
+  - type: textarea
     id: additional_context
     attributes:
       label: "Additional context"
