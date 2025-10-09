@@ -17,24 +17,16 @@ jobs:
           script: |
             const issue = context.payload.issue;
             const body = issue.body || "";
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
 
             // ---- helpers ----
             async function ensureLabel(name, color, description) {
               try {
-                await github.rest.issues.getLabel({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  name
-                });
+                await github.rest.issues.getLabel({ owner, repo, name });
               } catch (e) {
                 if (e.status === 404) {
-                  await github.rest.issues.createLabel({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    name,
-                    color,
-                    description
-                  });
+                  await github.rest.issues.createLabel({ owner, repo, name, color, description });
                 } else {
                   throw e;
                 }
@@ -47,9 +39,7 @@ jobs:
                 await ensureLabel(l.name, l.color, l.description);
               }
               await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
+                owner, repo, issue_number: issue.number,
                 labels: labels.map(l => l.name)
               });
             }
@@ -66,15 +56,14 @@ jobs:
             }
 
             function extractAnswerAfterLabel(text, label) {
-              // Find the label line; take the first non-empty line after it
               const lines = text.split(/\r?\n/);
               const target = label.toLowerCase();
               for (let i = 0; i < lines.length; i++) {
                 if (lines[i].toLowerCase().includes(target)) {
                   for (let j = i + 1; j < Math.min(i + 8, lines.length); j++) {
                     const candidate = lines[j]
-                      .replace(/^[-*]\s*/, "")   // strip bullets
-                      .replace(/^\**(.*)\**$/, "$1") // strip bold if any
+                      .replace(/^[-*]\s*/, "")        // bullet
+                      .replace(/^\**(.*)\**$/, "$1")  // bold
                       .trim();
                     if (candidate) return candidate;
                   }
@@ -101,32 +90,33 @@ jobs:
                 "_This issue is being closed automatically. Feel free to re-open with the correct form._"
               ].join("\n");
 
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
-                body: msg
-              });
+              await github.rest.issues.createComment({ owner, repo, issue_number: issue.number, body: msg });
 
               await github.rest.issues.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
+                owner, repo, issue_number: issue.number,
                 state: "closed"
               });
 
-              return;
+              return; // STOP: do not assign when it's invalid
             }
 
-            // ---- 2) Version checks (Beta/Unsure) ----
+            // ---- 2) Passed template check → assign here ----
+            try {
+              await github.rest.issues.addAssignees({
+                owner, repo, issue_number: issue.number,
+                assignees: ["NanashiTheNameless"]
+              });
+            } catch (e) {
+              // Ignore if assignment fails (e.g., not a collaborator)
+            }
+
+            // ---- 3) Version checks (Beta/Unsure) ----
             const version = extractAnswerAfterLabel(body, "Zorin OS version").trim();
             const versionLower = version.toLowerCase();
 
             if (versionLower === "beta release") {
               await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
+                owner, repo, issue_number: issue.number,
                 body: [
                   "Thanks for the report!",
                   "",
@@ -142,9 +132,7 @@ jobs:
               ]);
             } else if (versionLower === "other / unsure") {
               await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
+                owner, repo, issue_number: issue.number,
                 body: [
                   "Thanks for the report!",
                   "",
@@ -160,7 +148,7 @@ jobs:
               ]);
             }
 
-            // ---- 3) Googled errors check (add didnt-search-errors if 'No') ----
+            // ---- 4) Googled errors check (add didnt-search-errors if 'No') ----
             const googled = extractAnswerAfterLabel(body, "Did you try googling any error messages?").trim().toLowerCase();
             if (googled === "no") {
               await addLabelsSafe([
