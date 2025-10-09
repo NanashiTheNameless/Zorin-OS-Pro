@@ -29,10 +29,10 @@ body:
   - type: dropdown
     id: googled
     attributes:
-      label: "Did you try googling any error messages?""
+      label: "Did you try googling any error messages?"
       options:
-        - "No"
-        - "Yes"
+      - "No"
+      - "Yes"
     validations:
       required: true
 
