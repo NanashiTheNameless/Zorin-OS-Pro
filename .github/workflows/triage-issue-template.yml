@@ -24,8 +24,8 @@ jobs:
             const STATUS_MARKER = "<!-- triage:status-block -->";
             const MANAGED = {
               "invalid":              { color: "d73a4a", description: "Issue not following the required template" },
-              "beta-version":         { color: "BFD4F2", description: "Issue filed from a beta OS version" },
-              "version-unclear":      { color: "F9D0C4", description: "OS version not specified precisely" },
+              "beta-version":         { color: "BFD4F2", description: "Issue filed for a beta ZorinOS version" },
+              "version-unclear":      { color: "F9D0C4", description: "OS version not specified accurately" },
               "didnt-search-errors":  { color: "FDD835", description: "Reporter indicated they did not search error messages" },
               // We also manage 'bug' so it's added only when there are no issues flagged,
               // and removed when any issue is flagged.
