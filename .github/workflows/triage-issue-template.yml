@@ -25,7 +25,7 @@ jobs:
             const MANAGED = {
               "invalid":              { color: "d73a4a", description: "Issue not following the required template or is otherwise invalid" },
               "beta version":         { color: "BFD4F2", description: "Issue filed for a beta ZorinOS version" },
-              "version unclear":      { color: "F9D0C4", description: "OS version not specified accurately" },
+              "version unclear":      { color: "F9D0C4", description: "OS version not specified adequately" },
               "didnt search errors":  { color: "FDD835", description: "Reporter indicated they did not search error messages" },
               // We also manage 'bug' so it's added only when there are no issues flagged,
               // and removed when any issue is flagged.
