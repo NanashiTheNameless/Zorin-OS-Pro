@@ -1,4 +1,7 @@
-#!/bin/sh -e
+#!/usr/bin/env bash
+
+# shellcheck disable=SC2317  # Don't warn about unreachable commands
+# shellcheck disable=SC2016  # Don't warn that expressions don't expand in single quotes
 
 #################################################################################
 echo ""
