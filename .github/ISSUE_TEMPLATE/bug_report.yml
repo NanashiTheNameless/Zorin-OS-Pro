@@ -73,7 +73,7 @@ body:
         2. Click on '...'
         3. Scroll down to '...'
         4. See error
-      render: text
+      render: markdown
     validations:
       required: true
 
@@ -83,7 +83,7 @@ body:
       label: "Screenshots / logs (paste only)"
       description: "Paste short logs here. For large logs or files, submit the issue first, then upload attachments in a comment."
       placeholder: "Paste a short excerpt here. Attach the full file after submitting."
-      render: text
+      render: markdown
     validations:
       required: false
 
@@ -116,5 +116,6 @@ body:
       label: "Additional context"
       description: "Add any other context about the problem here."
       placeholder: "Anything else maintainers should know?"
+      render: markdown
     validations:
       required: false
