@@ -88,15 +88,15 @@ body:
     validations:
       required: true
 
-- type: textarea
-  id: screenshots
-  attributes:
-    label: Screenshots / logs (paste only)
-    description: Paste short logs here. For large logs or files, submit the issue first, then upload attachments in a comment.
-    placeholder: "Paste a short excerpt here. Attach the full file after submitting."
-    render: text
-  validations:
-    required: false
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots / logs (paste only)
+      description: Paste short logs here. For large logs or files, submit the issue first, then upload attachments in a comment.
+      placeholder: "Paste a short excerpt here. Attach the full file after submitting."
+      render: text
+    validations:
+      required: false
 
   - type: dropdown
     id: zorin_version
