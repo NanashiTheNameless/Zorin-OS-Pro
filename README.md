@@ -18,13 +18,13 @@ Copy the command below, paste in your terminal, enter your password when prompte
 
 **You can use the `-U` flag to do an unattended installation if needed.**
 
-## For The Minimum Additional Content (Recommended)
+## For The Minimum Additional Content
 
 ```sh
 bash <(curl -H 'DNT: 1' -H 'Sec-GPC: 1' -fsSL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh)
 ```
 
-## For A Lot of Extra Content
+## For A Lot of Extra Content (Recommended)
 
 ```sh
 bash <(curl -H 'DNT: 1' -H 'Sec-GPC: 1' -fsSL https://github.com/NanashiTheNameless/Zorin-OS-Pro/raw/refs/heads/main/zorin.sh) -X
