@@ -1,0 +1,169 @@
+name: Issue triage — enforce template and version checks
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  issues: write
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Triage issue body
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = issue.body || "";
+
+            // ---- helpers ----
+            async function ensureLabel(name, color, description) {
+              try {
+                await github.rest.issues.getLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name
+                });
+              } catch (e) {
+                if (e.status === 404) {
+                  await github.rest.issues.createLabel({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    name,
+                    color,
+                    description
+                  });
+                } else {
+                  throw e;
+                }
+              }
+            }
+
+            async function addLabelsSafe(labels) {
+              if (!labels || !labels.length) return;
+              for (const l of labels) {
+                await ensureLabel(l.name, l.color, l.description);
+              }
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: labels.map(l => l.name)
+              });
+            }
+
+            function usedTemplateByHeuristics(text) {
+              const anchors = [
+                "Describe the bug",
+                "Steps to reproduce",
+                "Expected behavior",
+                "Zorin OS version"
+              ];
+              const t = text.toLowerCase();
+              return anchors.every(a => t.includes(a.toLowerCase()));
+            }
+
+            function extractAnswerAfterLabel(text, label) {
+              // Find the label line; take the first non-empty line after it
+              const lines = text.split(/\r?\n/);
+              const target = label.toLowerCase();
+              for (let i = 0; i < lines.length; i++) {
+                if (lines[i].toLowerCase().includes(target)) {
+                  for (let j = i + 1; j < Math.min(i + 8, lines.length); j++) {
+                    const candidate = lines[j]
+                      .replace(/^[-*]\s*/, "")   // strip bullets
+                      .replace(/^\**(.*)\**$/, "$1") // strip bold if any
+                      .trim();
+                    if (candidate) return candidate;
+                  }
+                }
+              }
+              return "";
+            }
+
+            // ---- 1) Enforce template usage ----
+            const usedTemplate = usedTemplateByHeuristics(body);
+
+            if (!usedTemplate) {
+              await addLabelsSafe([
+                { name: "invalid", color: "d73a4a", description: "Issue not following the required template" }
+              ]);
+
+              const msg = [
+                "Hi! It looks like this issue wasn’t filed using our **Bug report form**.",
+                "",
+                "Please use the template so we get the required details:",
+                "- Go to **New issue** and choose **Bug report**.",
+                "- Fill in all required fields.",
+                "",
+                "_This issue is being closed automatically. Feel free to re-open with the correct form._"
+              ].join("\n");
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: msg
+              });
+
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: "closed"
+              });
+
+              return;
+            }
+
+            // ---- 2) Version checks (Beta/Unsure) ----
+            const version = extractAnswerAfterLabel(body, "Zorin OS version").trim();
+            const versionLower = version.toLowerCase();
+
+            if (versionLower === "beta release") {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: [
+                  "Thanks for the report!",
+                  "",
+                  "We noticed your **Zorin OS version** is:",
+                  `> ${version}`,
+                  "",
+                  "Behavior on beta releases can differ from stable. Please verify on the latest **stable** (e.g., `17.3 Core`) if possible and update this issue with results."
+                ].join("\n")
+              });
+
+              await addLabelsSafe([
+                { name: "beta-version", color: "BFD4F2", description: "Issue filed from a beta OS version" }
+              ]);
+            } else if (versionLower === "other / unsure") {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: [
+                  "Thanks for the report!",
+                  "",
+                  "We noticed your **Zorin OS version** selection is:",
+                  `> ${version}`,
+                  "",
+                  "Please confirm the exact version (e.g., `17.3 Core`) and update the issue. Precise versions help us reproduce and triage faster."
+                ].join("\n")
+              });
+
+              await addLabelsSafe([
+                { name: "version-unclear", color: "F9D0C4", description: "OS version not specified precisely" }
+              ]);
+            }
+
+            // ---- 3) Googled errors check (add didnt-search-errors if 'No') ----
+            const googled = extractAnswerAfterLabel(body, "Did you try googling any error messages?").trim().toLowerCase();
+            if (googled === "no") {
+              await addLabelsSafe([
+                { name: "didnt-search-errors", color: "FDD835", description: "Reporter indicated they did not search error messages" }
+              ]);
+            }
