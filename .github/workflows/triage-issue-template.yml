@@ -1,4 +1,4 @@
-name: Issue triage — enforce template and version checks
+name: Issue triage
 
 on:
   issues:
@@ -11,50 +11,58 @@ jobs:
   triage:
     runs-on: ubuntu-latest
     steps:
-      - name: Triage issue body
+      - name: Triage issue
         uses: actions/github-script@v8
         with:
           script: |
             const issue = context.payload.issue;
             const body = issue.body || "";
             const owner = context.repo.owner;
-            const repo = context.repo.repo;
+            const repo  = context.repo.repo;
+
+            // ---- config ----
+            const STATUS_MARKER = "<!-- triage:status-block -->";
+            const MANAGED = {
+              "invalid":              { color: "d73a4a", description: "Issue not following the required template" },
+              "beta-version":         { color: "BFD4F2", description: "Issue filed from a beta OS version" },
+              "version-unclear":      { color: "F9D0C4", description: "OS version not specified precisely" },
+              "didnt-search-errors":  { color: "FDD835", description: "Reporter indicated they did not search error messages" },
+              // We also manage 'bug' so it's added only when there are no issues flagged,
+              // and removed when any issue is flagged.
+              "bug":                  { color: "d73a4a", description: "Confirmed bug report (no form issues flagged)" },
+            };
+            const MANAGED_KEYS = Object.keys(MANAGED);
 
             // ---- helpers ----
-            async function ensureLabel(name, color, description) {
+            async function ensureLabel(name) {
               try {
                 await github.rest.issues.getLabel({ owner, repo, name });
               } catch (e) {
                 if (e.status === 404) {
-                  await github.rest.issues.createLabel({ owner, repo, name, color, description });
-                } else {
-                  throw e;
-                }
+                  const spec = MANAGED[name] || { color: "ededed", description: "" };
+                  await github.rest.issues.createLabel({ owner, repo, name, color: spec.color, description: spec.description });
+                } else throw e;
               }
             }
-
-            async function addLabelsSafe(labels) {
-              if (!labels || !labels.length) return;
-              for (const l of labels) {
-                await ensureLabel(l.name, l.color, l.description);
-              }
-              await github.rest.issues.addLabels({
-                owner, repo, issue_number: issue.number,
-                labels: labels.map(l => l.name)
-              });
+            async function labelsNow() {
+              const ls = await github.paginate(github.rest.issues.listLabelsOnIssue, { owner, repo, issue_number: issue.number, per_page: 100 });
+              return new Set(ls.map(l => l.name));
             }
-
+            async function addLabelsSafe(arr) {
+              if (!arr || !arr.length) return;
+              for (const l of arr) await ensureLabel(l);
+              await github.rest.issues.addLabels({ owner, repo, issue_number: issue.number, labels: arr });
+            }
+            async function removeLabelsSafe(arr) {
+              for (const l of arr || []) {
+                try { await github.rest.issues.removeLabel({ owner, repo, issue_number: issue.number, name: l }); } catch {}
+              }
+            }
             function usedTemplateByHeuristics(text) {
-              const anchors = [
-                "Describe the bug",
-                "Steps to reproduce",
-                "Expected behavior",
-                "Zorin OS version"
-              ];
+              const anchors = ["Describe the bug","Steps to reproduce","Expected behavior","Zorin OS version"];
               const t = text.toLowerCase();
               return anchors.every(a => t.includes(a.toLowerCase()));
             }
-
             function extractAnswerAfterLabel(text, label) {
               const lines = text.split(/\r?\n/);
               const target = label.toLowerCase();
@@ -71,16 +79,68 @@ jobs:
               }
               return "";
             }
+            async function findStatusComment() {
+              const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number: issue.number, per_page: 100 });
+              return comments.find(c => (c.body || "").includes(STATUS_MARKER));
+            }
+            async function upsertStatusComment(blockLines) {
+              const content = blockLines.concat(["", STATUS_MARKER]).join("\n");
+              const existing = await findStatusComment();
+              if (existing) {
+                await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body: content });
+              } else {
+                await github.rest.issues.createComment({ owner, repo, issue_number: issue.number, body: content });
+              }
+            }
 
-            // ---- 1) Enforce template usage ----
-            const usedTemplate = usedTemplateByHeuristics(body);
+            // ---- evaluate current answers/state ----
+            const templateOK = usedTemplateByHeuristics(body);
+            const current = await labelsNow();
 
-            if (!usedTemplate) {
-              await addLabelsSafe([
-                { name: "invalid", color: "d73a4a", description: "Issue not following the required template" }
-              ]);
+            const version = (extractAnswerAfterLabel(body, "Zorin OS version").trim()) || "";
+            const versionLower = version.toLowerCase();
+            const googled = (extractAnswerAfterLabel(body, "Did you try googling any error messages?").trim()) || "";
+            const googledLower = googled.toLowerCase();
 
-              const msg = [
+            // Desired labels from rules
+            const desired = new Set();
+            if (!templateOK) desired.add("invalid");
+            if (versionLower === "beta release") desired.add("beta-version");
+            if (versionLower === "other / unsure") desired.add("version-unclear");
+            if (googledLower === "no") desired.add("didnt-search-errors");
+
+            // Add 'bug' when — and only when — there are no issues flagged
+            if (templateOK && desired.size === 0) {
+              desired.add("bug");
+            }
+
+            // Sync labels
+            const toRemove = MANAGED_KEYS.filter(l => current.has(l) && !desired.has(l));
+            const toAdd    = MANAGED_KEYS.filter(l => desired.has(l) && !current.has(l));
+            if (toRemove.length) await removeLabelsSafe(toRemove);
+            if (toAdd.length)    await addLabelsSafe(toAdd);
+
+            // Assignment only if valid template
+            if (templateOK) {
+              try {
+                await github.rest.issues.addAssignees({ owner, repo, issue_number: issue.number, assignees: ["NanashiTheNameless"] });
+              } catch {}
+            }
+
+            // Close invalid as "not planned" (idempotent)
+            if (!templateOK) {
+              await github.rest.issues.update({
+                owner, repo, issue_number: issue.number,
+                state: "closed",
+                state_reason: "not_planned"
+              });
+            }
+
+            // ---- build ONE comment block with dividers between sections ----
+            const sections = [];
+
+            if (!templateOK) {
+              sections.push([
                 "Hi! It looks like this issue wasn’t filed using our **Bug report form**.",
                 "",
                 "Please use the template so we get the required details:",
@@ -88,70 +148,48 @@ jobs:
                 "- Fill in all required fields.",
                 "",
                 "_This issue is being closed automatically. Feel free to re-open with the correct form._"
-              ].join("\n");
-
-              await github.rest.issues.createComment({ owner, repo, issue_number: issue.number, body: msg });
-
-              await github.rest.issues.update({
-                owner, repo, issue_number: issue.number,
-                state: "closed"
-              });
-
-              return; // STOP: do not assign when it's invalid
-            }
-
-            // ---- 2) Passed template check → assign here ----
-            try {
-              await github.rest.issues.addAssignees({
-                owner, repo, issue_number: issue.number,
-                assignees: ["NanashiTheNameless"]
-              });
-            } catch (e) {
-              // Ignore if assignment fails (e.g., not a collaborator)
-            }
-
-            // ---- 3) Version checks (Beta/Unsure) ----
-            const version = extractAnswerAfterLabel(body, "Zorin OS version").trim();
-            const versionLower = version.toLowerCase();
-
-            if (versionLower === "beta release") {
-              await github.rest.issues.createComment({
-                owner, repo, issue_number: issue.number,
-                body: [
+              ]);
+            } else {
+              if (versionLower === "beta release") {
+                sections.push([
                   "Thanks for the report!",
                   "",
                   "We noticed your **Zorin OS version** is:",
                   `> ${version}`,
                   "",
                   "Behavior on beta releases can differ from stable. Please verify on the latest **stable** (e.g., `17.3 Core`) if possible and update this issue with results."
-                ].join("\n")
-              });
-
-              await addLabelsSafe([
-                { name: "beta-version", color: "BFD4F2", description: "Issue filed from a beta OS version" }
-              ]);
-            } else if (versionLower === "other / unsure") {
-              await github.rest.issues.createComment({
-                owner, repo, issue_number: issue.number,
-                body: [
+                ]);
+              }
+              if (versionLower === "other / unsure") {
+                sections.push([
                   "Thanks for the report!",
                   "",
                   "We noticed your **Zorin OS version** selection is:",
-                  `> ${version}`,
+                  `> ${version || "(unreadable)"}`,
                   "",
                   "Please confirm the exact version (e.g., `17.3 Core`) and update the issue. Precise versions help us reproduce and triage faster."
-                ].join("\n")
-              });
-
-              await addLabelsSafe([
-                { name: "version-unclear", color: "F9D0C4", description: "OS version not specified precisely" }
-              ]);
+                ]);
+              }
+              if (googledLower === "no") {
+                sections.push([
+                  "One quick ask: you indicated **you didn’t search the error messages**.",
+                  "",
+                  "Before we dive in, please try a quick search with:",
+                  "- The exact error message in quotes",
+                  "- Your exact **Zorin OS version** (e.g., `17.3 Core`)",
+                  "- The app/tool name and relevant keywords",
+                  "",
+                  "If you find anything, please share the links (even if they didn’t help) — it speeds up triage a lot."
+                ]);
+              }
+              if (sections.length === 0) {
+                sections.push(["_Automated triage: No notes. Thanks for using the bug report form! A developer will be with you eventually to help._"]);
+              }
             }
 
-            // ---- 4) Googled errors check (add didnt-search-errors if 'No') ----
-            const googled = extractAnswerAfterLabel(body, "Did you try googling any error messages?").trim().toLowerCase();
-            if (googled === "no") {
-              await addLabelsSafe([
-                { name: "didnt-search-errors", color: "FDD835", description: "Reporter indicated they did not search error messages" }
-              ]);
-            }
+            // Insert a divider between sections: `---`
+            const block = sections.flatMap((sec, idx) =>
+              idx === 0 ? sec : ["", "---", "", ...sec]
+            );
+
+            await upsertStatusComment(block);
