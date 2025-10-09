@@ -1,4 +1,4 @@
-# Zorin-OS-Pro
+# Zorin-OS-Pro [![Shellcheck](https://img.shields.io/github/actions/workflow/status/NanashiTheNameless/Zorin-OS-Pro/shellcheck.yml?branch=main&label=Shellcheck&style=for-the-badge&labelColor=0d1117)](https://github.com/NanashiTheNameless/Zorin-OS-Pro/actions/workflows/shellcheck.yml)
 
 ## This script turns your Zorin OS CORE instance into a Zorin OS PRO instance!
 
