@@ -33,4 +33,5 @@ jobs:
           fetch-depth: 1
 
       - name: Shellcheck scripts
-        run: 'find . -not -name \*.md \( -path ./\* -o -name \*.sh \) -print0 | xargs -0 ~/shellcheck'
+        shell: bash
+        run: 'find . -type f -name "*.sh" -print0 | xargs -0 ~/shellcheck'
