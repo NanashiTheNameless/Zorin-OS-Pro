@@ -23,10 +23,10 @@ jobs:
             // ---- config ----
             const STATUS_MARKER = "<!-- triage:status-block -->";
             const MANAGED = {
-              "invalid":              { color: "d73a4a", description: "Issue not following the required template" },
-              "beta-version":         { color: "BFD4F2", description: "Issue filed for a beta ZorinOS version" },
-              "version-unclear":      { color: "F9D0C4", description: "OS version not specified accurately" },
-              "didnt-search-errors":  { color: "FDD835", description: "Reporter indicated they did not search error messages" },
+              "invalid":              { color: "d73a4a", description: "Issue not following the required template or is otherwise invalid" },
+              "beta version":         { color: "BFD4F2", description: "Issue filed for a beta ZorinOS version" },
+              "version unclear":      { color: "F9D0C4", description: "OS version not specified accurately" },
+              "didnt search errors":  { color: "FDD835", description: "Reporter indicated they did not search error messages" },
               // We also manage 'bug' so it's added only when there are no issues flagged,
               // and removed when any issue is flagged.
               "bug":                  { color: "d73a4a", description: "Confirmed bug report (no form issues flagged)" },
@@ -105,9 +105,9 @@ jobs:
             // Desired labels from rules
             const desired = new Set();
             if (!templateOK) desired.add("invalid");
-            if (versionLower === "beta release") desired.add("beta-version");
-            if (versionLower === "other / unsure") desired.add("version-unclear");
-            if (googledLower === "no") desired.add("didnt-search-errors");
+            if (versionLower === "beta release") desired.add("beta version");
+            if (versionLower === "other / unsure") desired.add("version unclear");
+            if (googledLower === "no") desired.add("didnt search errors");
 
             // Add 'bug' when — and only when — there are no issues flagged
             if (templateOK && desired.size === 0) {
