@@ -97,6 +97,10 @@ jobs:
             const templateOK = usedTemplateByHeuristics(body);
             const current = await labelsNow();
 
+            
+
+            // Skip auto-closing if the issue is already assigned to Nanashi
+            const isAssignedToNanashi = (issue.assignees || []).some(a => a.login === "NanashiTheNameless");
             const version = (extractAnswerAfterLabel(body, "Zorin OS version").trim()) || "";
             const versionLower = version.toLowerCase();
             const googled = (extractAnswerAfterLabel(body, "Did you try googling any error messages?").trim()) || "";
@@ -128,7 +132,7 @@ jobs:
             }
 
             // Close invalid as "not planned" (idempotent)
-            if (!templateOK) {
+            if (!templateOK && !isAssignedToNanashi) {
               await github.rest.issues.update({
                 owner, repo, issue_number: issue.number,
                 state: "closed",
@@ -139,7 +143,7 @@ jobs:
             // ---- build ONE comment block with dividers between sections ----
             const sections = [];
 
-            if (!templateOK) {
+            if (!templateOK && !isAssignedToNanashi) {
               sections.push([
                 "Hi! It looks like this issue wasn’t filed using our **Bug report form**.",
                 "",
