@@ -2,7 +2,7 @@ name: Issue triage
 
 on:
   issues:
-    types: [opened, edited]
+    types: [opened, reopened, edited]
 
 permissions:
   issues: write
