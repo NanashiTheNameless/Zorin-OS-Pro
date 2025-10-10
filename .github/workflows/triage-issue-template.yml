@@ -147,6 +147,8 @@ jobs:
                 "- Go to **New issue** and choose **Bug report**.",
                 "- Fill in all required fields.",
                 "",
+                "If what you wanted to open an issue was not a bug report and instead was some question or suggestion please see [this announcement](<https://github.com/NanashiTheNameless/Zorin-OS-Pro/discussions/29>) for more info.",
+                "",
                 "_This issue is being closed automatically. Feel free to re-open with the correct form._"
               ]);
             } else {
