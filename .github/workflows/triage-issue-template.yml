@@ -189,7 +189,7 @@ jobs:
                 ]);
               }
               if (sections.length === 0) {
-                sections.push(["_Automated triage: No notes. Thanks for using the bug report form! A developer will be with you eventually to help._"]);
+                sections.push(["_Automated triage: No notes. Thanks for using the issue system correctly! A developer will be with you at their availability to help._"]);
               }
             }
 
