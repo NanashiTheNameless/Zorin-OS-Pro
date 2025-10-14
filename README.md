@@ -14,7 +14,7 @@ You should have access to all Zorin OS Pro features.
 
 # Usage:
 
-Copy the command below, paste in your terminal, enter your password when prompted, follow the scripts' prompts, and reboow when it tells you to. You should now be running the pro version of Zorin OS!
+Copy the command below, paste in your terminal, enter your password when prompted, follow the scripts' prompts, and reboot when it tells you to. You should now be running the pro version of Zorin OS!
 
 **You can use the `-U` flag to do an unattended installation if needed.**
 
