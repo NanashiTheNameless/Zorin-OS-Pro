@@ -10,20 +10,23 @@ body:
         Thanks for filing a bug! Please fill out the required fields.
 
   - type: checkboxes
-    id: latest
+    id: submission_gate
     attributes:
-      label: "Version confirmation"
+      label: "Required acknowledgements before submitting"
+      description: "Issues may be closed if they don't meet these requirements."
       options:
-        - label: "I confirm I’m using the latest version of this tool."
+        - label: >-
+            I confirm I’m using the latest version of this tool.
           required: true
-
-  - type: checkboxes
-    id: latest_gate
-    attributes:
-      label: "Required before submitting"
-      description: "Issues may be closed if they don’t meet this requirement."
-      options:
-        - label: "I acknowledge that reports from non-latest versions may be closed without further investigation."
+        - label: >-
+            I acknowledge that reports from non-latest script versions may be
+            closed without further investigation.
+          required: true
+        - label: >-
+            I acknowledge that incomplete reports with blank or unhelpful
+            responses (such as but not limited to: "see above", "it just
+            doesn't work", and "self explanatory") may be closed without further
+            investigation.
           required: true
 
   - type: dropdown
