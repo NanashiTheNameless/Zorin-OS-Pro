@@ -19,7 +19,7 @@ body:
             I confirm I’m using the latest version of this tool.
           required: true
         - label: >-
-            I acknowledge that reports from non-latest script versions may be
+            I acknowledge that reports from previous script versions may be
             closed without further investigation.
           required: true
         - label: >-
