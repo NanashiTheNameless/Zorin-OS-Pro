@@ -150,11 +150,6 @@ jobs:
                 "Please use the template so we get the required details:",
                 "[Click here to start a new bug report using the required template.](<https://github.com/NanashiTheNameless/Zorin-OS-Pro/issues/new?template=bug_report.yml>)",
                 "",
-                "**OR**",
-                "",
-                "- Go to **New issue** and choose **Bug report**.",
-                "- Fill in all required fields.",
-                "",
                 "**If what you wanted to open an issue for something other than a bug report please see [this announcement](<https://github.com/NanashiTheNameless/Zorin-OS-Pro/discussions/29>) for more information.**",
                 "",
                 "_This issue is being closed automatically. Feel free to re-open with the correct form._"
