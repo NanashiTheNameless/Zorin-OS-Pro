@@ -33,9 +33,11 @@ echo "  ███╔╝ ██║   ██║██████╔╝██║�
 echo " ███╔╝  ██║   ██║██╔══██╗██║██║╚██╗██║    ██║   ██║╚════██║    ██╔═══╝ ██╔══██╗██║   ██║"
 echo "███████╗╚██████╔╝██║  ██║██║██║ ╚████║    ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝"
 echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ "
-echo "|ZORIN-OS-PRO| |Script v9.2.0.1| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
+echo "|ZORIN-OS-PRO| |Script v9.2.0.2| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
 echo ""
 echo "(Please note this version ONLY works on ZorinOS 18 Core*, ZorinOS 17 Core, and ZorinOS 16 Core)"
+echo ""
+echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
 echo ""
 echo "To use this script on:"
 echo "ZorinOS 16 Core use the -6 flag"
@@ -88,6 +90,20 @@ if [ -z ${version+x} ] ; then
     else
         fail
     fi
+fi
+
+if [ "$version" = "18" ]; then
+    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
+    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
+    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
+    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
+    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
+    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
+    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
+    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
+    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
+    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
+    sleep 10
 fi
 
 echo ""
