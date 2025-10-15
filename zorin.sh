@@ -33,11 +33,9 @@ echo "  ███╔╝ ██║   ██║██████╔╝██║�
 echo " ███╔╝  ██║   ██║██╔══██╗██║██║╚██╗██║    ██║   ██║╚════██║    ██╔═══╝ ██╔══██╗██║   ██║"
 echo "███████╗╚██████╔╝██║  ██║██║██║ ╚████║    ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝"
 echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ "
-echo "|ZORIN-OS-PRO| |Script v9.2.0.2| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original by kauancvlcnt|"
+echo "|ZORIN-OS-PRO| |Script v9.3.0.0| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original idea by kauancvlcnt|"
 echo ""
-echo "(Please note this version ONLY works on ZorinOS 18 Core*, ZorinOS 17 Core, and ZorinOS 16 Core)"
-echo ""
-echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
+echo "(Please note this tool ONLY works on ZorinOS 18 Core, ZorinOS 17 Core, and ZorinOS 16 Core)"
 echo ""
 echo "To use this script on:"
 echo "ZorinOS 16 Core use the -6 flag"
@@ -90,20 +88,14 @@ if [ -z ${version+x} ] ; then
     else
         fail
     fi
+    auto_version="true"
 fi
 
-if [ "$version" = "18" ]; then
-    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
-    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
-    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
-    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
-    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
-    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
-    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
-    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
-    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
-    echo "ZorinOS 18 Core may not work as expected, currently unstable, only partially tested, may brick your system."
-    sleep 10
+if [ "$auto_version" = "true" ]; then
+    echo ""
+    echo "ZorinOS $version automatically selected. if this is not correct please stop the script with \"CTRL+C\" and re-run the script with the correct version flag."
+    echo ""
+    sleep 5
 fi
 
 echo ""
@@ -260,6 +252,7 @@ if ! sudo apt --no-install-recommends install ${apt_no_confirm} "$TEMPD/zorin-os
     echo "Error: Failed to install Zorin OS keyring."
     # This should be non-blocking
 fi
+
 if ! sudo apt --no-install-recommends install ${apt_no_confirm} "$TEMPD/zorin-os-premium-keyring_all.deb"; then
     echo "Error: Failed to install premium keyring."
     exit 1
@@ -332,10 +325,19 @@ elif [ "$version" = "18" ]; then
 else
     fail
 fi
+
 echo ""
 echo ""
 echo "All done!"
+if [ "$version" = "18" ]; then
+    echo ""
+    echo "ZorinOS 18 Core support is only partially confirmed. Your system may need to be rebooted multiple times and first boot(s) may take longer than normal."
+    echo ""
+    echo "If you have any questions or comments please see https://github.com/NanashiTheNameless/Zorin-OS-Pro/discussions/29 for more information on how to deal with them."
+fi
 echo ""
-echo 'Please Reboot your Zorin Instance... you can do so with "sudo reboot"'
+echo "If you are using this tool and have issues please file a bug report about said issues on GitHub https://github.com/NanashiTheNameless/Zorin-OS-Pro/issues/new?template=bug_report.yml"
+echo ""
+echo 'Please Reboot your Zorin Instance... You can do so with "sudo reboot" or by pressing "reboot" in the Zorin menu in the bottom left.'
 echo ""
 echo ""
