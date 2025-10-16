@@ -97,10 +97,9 @@ jobs:
             const templateOK = usedTemplateByHeuristics(body);
             const current = await labelsNow();
 
-            
+            // Guard: when assigned to NanashiTheNameless, labels/state are manual-only
+            const mayMutateLabelsOrState = !((issue.assignees || []).some(a => a?.login === "NanashiTheNameless"));
 
-            // Skip auto-closing if the issue is already assigned to Nanashi
-            const isAssignedToNanashi = (issue.assignees || []).some(a => a.login === "NanashiTheNameless");
             const version = (extractAnswerAfterLabel(body, "Zorin OS version").trim()) || "";
             const versionLower = version.toLowerCase();
             const googled = (extractAnswerAfterLabel(body, "Did you try googling any error messages?").trim()) || "";
@@ -118,11 +117,13 @@ jobs:
               desired.add("bug");
             }
 
-            // Sync labels
-            const toRemove = MANAGED_KEYS.filter(l => current.has(l) && !desired.has(l));
-            const toAdd    = MANAGED_KEYS.filter(l => desired.has(l) && !current.has(l));
-            if (toRemove.length) await removeLabelsSafe(toRemove);
-            if (toAdd.length)    await addLabelsSafe(toAdd);
+            // Sync labels (skip if assigned to NanashiTheNameless)
+            if (mayMutateLabelsOrState) {
+              const toRemove = MANAGED_KEYS.filter(l => current.has(l) && !desired.has(l));
+              const toAdd    = MANAGED_KEYS.filter(l => desired.has(l) && !current.has(l));
+              if (toRemove.length) await removeLabelsSafe(toRemove);
+              if (toAdd.length)    await addLabelsSafe(toAdd);
+            }
 
             // Assignment only if valid template
             if (templateOK) {
@@ -131,8 +132,8 @@ jobs:
               } catch {}
             }
 
-            // Close invalid as "not planned" (idempotent)
-            if (!templateOK && !isAssignedToNanashi) {
+            // Close invalid as "not planned" (idempotent). Skip if assigned to NanashiTheNameless.
+            if (!templateOK && mayMutateLabelsOrState) {
               await github.rest.issues.update({
                 owner, repo, issue_number: issue.number,
                 state: "closed",
@@ -143,7 +144,7 @@ jobs:
             // ---- build ONE comment block with dividers between sections ----
             const sections = [];
 
-            if (!templateOK && !isAssignedToNanashi) {
+            if (!templateOK && mayMutateLabelsOrState) {
               sections.push([
                 "Hi! It looks like this issue wasn’t filed using our **Bug report form**.",
                 "",
