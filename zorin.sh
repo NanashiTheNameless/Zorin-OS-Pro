@@ -303,12 +303,17 @@ if [ "$version" = "16" ]; then
     # install 16 pro content
     if [ "$extra" = "true" ]; then
         if ! sudo apt-get install ${apt_no_confirm} zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-12 zorin-os-wallpapers-15 zorin-os-wallpapers-16 zorin-sound-theme zorin-windows-app-support-installation-shortcut; then
-            echo "Error: Failed to install packages. (16 Extra)"
+            echo "Error: Failed to install APT packages. (16 Extra)"
+            exit 1
+        fi
+
+        if ! flatpak install -y org.nickvision.money com.usebottles.bottles io.github.seadve.Kooha com.rafaelmardojai.Blanket nl.hjdskes.gcolor3 org.ardour.Ardour org.darktable.Darktable org.audacityteam.Audacity org.kde.krita org.gnome.BreakTimer org.gabmus.gfeeds fr.handbrake.ghb com.github.johnfactotum.Foliate org.inkscape.Inkscape com.obsproject.Studio org.mixxx.Mixxx io.github.OpenToonz org.pitivi.Pitivi org.videolan.VLC com.github.xournalpp.xournalpp net.scribus.Scribus org.blender.Blender; then
+            echo "Error: Failed to install Flatpak packages. (16 Extra)"
             exit 1
         fi
     else
         if ! sudo apt-get --no-install-recommends install ${apt_no_confirm} zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-icon-themes zorin-os-artwork zorin-os-keyring zorin-os-premium-keyring zorin-os-pro zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-wallpapers zorin-os-wallpapers-16; then
-            echo "Error: Failed to install packages. (16)"
+            echo "Error: Failed to install APT packages. (16)"
             exit 1
         fi
     fi
@@ -316,7 +321,11 @@ elif [ "$version" = "17" ]; then
     # install 17 pro content
     if [ "$extra" = "true" ]; then
         if ! sudo apt-get install ${apt_no_confirm} zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-pro-wallpapers-17 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-12 zorin-os-wallpapers-15 zorin-os-wallpapers-16 zorin-os-wallpapers-17 zorin-sound-theme zorin-windows-app-support-installation-shortcut; then
-            echo "Error: Failed to install packages. (17 extra)"
+            echo "Error: Failed to install APT packages. (17 extra)"
+            exit 1
+        fi
+        if ! flatpak install -y org.nickvision.money com.usebottles.bottles io.github.seadve.Kooha com.rafaelmardojai.Blanket nl.hjdskes.gcolor3 org.ardour.Ardour org.darktable.Darktable org.audacityteam.Audacity org.kde.krita org.gnome.BreakTimer org.gabmus.gfeeds fr.handbrake.ghb com.github.johnfactotum.Foliate org.inkscape.Inkscape com.obsproject.Studio org.mixxx.Mixxx io.github.OpenToonz org.kde.kdenlive org.videolan.VLC com.github.xournalpp.xournalpp net.scribus.Scribus org.blender.Blender; then
+            echo "Error: Failed to install Flatpak packages. (17 extra)"
             exit 1
         fi
     else
@@ -330,6 +339,10 @@ elif [ "$version" = "18" ]; then
     if [ "$extra" = "true" ]; then
         if ! sudo apt-get install ${apt_no_confirm} zorin-additional-drivers-checker zorin-appearance zorin-appearance-layouts-shell-core zorin-appearance-layouts-shell-premium zorin-appearance-layouts-support zorin-auto-theme zorin-connect zorin-desktop-session zorin-desktop-themes zorin-exec-guard zorin-exec-guard-app-db zorin-gnome-tour-autostart zorin-icon-themes zorin-os-artwork zorin-os-default-settings zorin-os-docs zorin-os-file-templates zorin-os-keyring zorin-os-minimal zorin-os-overlay zorin-os-premium-keyring zorin-os-printer-test-page zorin-os-pro zorin-os-pro-creative-suite zorin-os-pro-productivity-apps zorin-os-pro-wallpapers zorin-os-pro-wallpapers-16 zorin-os-pro-wallpapers-17 zorin-os-restricted-addons zorin-os-standard zorin-os-tour-video zorin-os-upgrader zorin-os-wallpapers zorin-os-wallpapers-12 zorin-os-wallpapers-15 zorin-os-wallpapers-16 zorin-os-wallpapers-17 zorin-os-wallpapers-18 zorin-sound-theme zorin-windows-app-support-installation-shortcut; then
             echo "Error: Failed to install packages. (18 extra)"
+            exit 1
+        fi
+        if ! flatpak install -y org.nickvision.money com.usebottles.bottles io.github.seadve.Kooha com.rafaelmardojai.Blanket nl.hjdskes.gcolor3 org.ardour.Ardour org.darktable.Darktable org.audacityteam.Audacity org.kde.krita org.gnome.BreakTimer org.gabmus.gfeeds fr.handbrake.ghb com.github.johnfactotum.Foliate org.inkscape.Inkscape com.obsproject.Studio org.mixxx.Mixxx io.github.OpenToonz org.kde.kdenlive org.videolan.VLC com.github.xournalpp.xournalpp net.scribus.Scribus org.blender.Blender; then
+            echo "Error: Failed to install Flatpak packages. (17 extra)"
             exit 1
         fi
     else
