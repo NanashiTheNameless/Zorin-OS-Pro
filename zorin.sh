@@ -33,7 +33,7 @@ echo "  ███╔╝ ██║   ██║██████╔╝██║�
 echo " ███╔╝  ██║   ██║██╔══██╗██║██║╚██╗██║    ██║   ██║╚════██║    ██╔═══╝ ██╔══██╗██║   ██║"
 echo "███████╗╚██████╔╝██║  ██║██║██║ ╚████║    ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝"
 echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ "
-echo "|ZORIN-OS-PRO| |Script v9.3.0.0| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original idea by kauancvlcnt|"
+echo "|ZORIN-OS-PRO| |Script v9.3.0.1| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original idea by kauancvlcnt|"
 echo ""
 echo "(Please note this tool ONLY works on ZorinOS 18 Core, ZorinOS 17 Core, and ZorinOS 16 Core)"
 echo ""
@@ -111,6 +111,10 @@ if ! sudo apt-get install ${apt_no_confirm} ca-certificates curl; then
     echo "Error: Failed to install dependencies."
     # This should be non-blocking
 fi
+
+echo ""
+echo "Done installing dependencies..."
+echo ""
 
 echo ""
 echo "Updating the default sources.list for Zorin's custom resources..."
@@ -195,6 +199,10 @@ else
     fail
 fi
 
+echo ""
+echo "Done updating the default sources.list for Zorin's custom resources..."
+echo ""
+
 sleep 2
 
 # Create a temporary directory and store its name in a variable.
@@ -259,6 +267,10 @@ if ! sudo apt --no-install-recommends install ${apt_no_confirm} "$TEMPD/zorin-os
 fi
 
 echo ""
+echo "Done adding Zorin's Package Keys..."
+echo ""
+
+echo ""
 echo "Adding premium flags..."
 echo ""
 
@@ -272,6 +284,10 @@ Acquire
 };
 
 EOF
+
+echo ""
+echo "Done adding premium flags..."
+echo ""
 
 echo ""
 echo "Adding premium content..."
