@@ -2,6 +2,8 @@
 
 - AdityaGarg8 ([@AdityaGarg8](<https://github.com/AdityaGarg8>)) For Adding The -U Functionality, And Helping Me Notice And Fix many Oversights.
 
+- choc1024 ([@choc1024](<https://github.com/choc1024>)) For Adding The Install Of The Additional Extra Software Via Flatpak/Flathub.
+
 - kauancvlcnt ([@kauancvlcnt](<https://github.com/kauancvlcnt>)) For The Original Code And The Idea.
 
 - NanashiTheNameless ([@NanashiTheNameless](<https://github.com/NanashiTheNameless>)) (This Fork)
