@@ -355,6 +355,20 @@ else
 fi
 
 echo ""
+echo "Removing you from the ZorinOS Census system (if enrolled)..."
+echo ""
+
+if ! sudo apt purge ${no_confirm} zorin-os-census ; then
+    echo "Error: APT failed to uninstall zorin-os-census"
+    # This should be non-blocking
+fi
+
+if ! sudo rm -f /root/etc/cron.daily/zorin-os-census /root/etc/cron.hourly/zorin-os-census ; then
+    echo "Error: Failed to delete ZorinOS Census cron tasks \"/root/etc/cron.daily/zorin-os-census\" and \"/root/etc/cron.hourly/zorin-os-census\""
+    # This should be non-blocking
+fi
+
+echo ""
 echo ""
 echo "All done!"
 if [ "$version" = "18" ]; then
