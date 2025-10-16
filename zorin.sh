@@ -33,7 +33,7 @@ echo "  ███╔╝ ██║   ██║██████╔╝██║�
 echo " ███╔╝  ██║   ██║██╔══██╗██║██║╚██╗██║    ██║   ██║╚════██║    ██╔═══╝ ██╔══██╗██║   ██║"
 echo "███████╗╚██████╔╝██║  ██║██║██║ ╚████║    ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝"
 echo "╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ "
-echo "|ZORIN-OS-PRO| |Script v9.4.0.0| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original idea by kauancvlcnt|"
+echo "|ZORIN-OS-PRO| |Script v9.4.1.0| |Overhauled & Maintained By NamelessNanasi/NanashiTheNameless| |original idea by kauancvlcnt|"
 echo ""
 echo "(Please note this tool ONLY works on ZorinOS 18 Core, ZorinOS 17 Core, and ZorinOS 16 Core)"
 echo ""
