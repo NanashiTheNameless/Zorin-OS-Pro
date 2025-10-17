@@ -235,26 +235,55 @@ fi
 if [ "$version" = "18" ]; then
     if ! curl -H 'DNT: 1' -H 'Sec-GPC: 1' -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.1_all.deb --output "$TEMPD/zorin-os-premium-keyring_all.deb"; then
         echo "Error: Failed to download premium keyring."
-        exit 1
+        # exit 1
     fi
     if [ ! -s "$TEMPD/zorin-os-premium-keyring_all.deb" ]; then
         echo "Error: Downloaded premium keyring file is empty or missing."
-        exit 1
+        # exit 1
     fi
+
+# Temporary hack-fix
+    # Create the directory if it doesn't exist
+    sudo mkdir -p /etc/apt/trusted.gpg.d
+
+    # Retrieve the key from a trusted keyserver (Ubuntu’s hkps pool)
+    gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys F67720BE68E7EEE742FA62F35FD7496A07D323BC
+
+    # Export and save it to the system trusted keyring directory
+    gpg --export F67720BE68E7EEE742FA62F35FD7496A07D323BC | sudo tee /etc/apt/trusted.gpg.d/zorin-os-premium.gpg > /dev/null
+
+    # Verify that it was saved correctly
+    sudo gpg --show-keys /etc/apt/trusted.gpg.d/zorin-os-premium.gpg
+
 else
     if ! curl -H 'DNT: 1' -H 'Sec-GPC: 1' -A 'Zorin OS Premium' https://packages.zorinos.com/premium/pool/main/z/zorin-os-premium-keyring/zorin-os-premium-keyring_1.0_all.deb --output "$TEMPD/zorin-os-premium-keyring_all.deb"; then
         echo "Error: Failed to download premium keyring."
-        exit 1
+        # exit 1
     fi
     if [ ! -s "$TEMPD/zorin-os-premium-keyring_all.deb" ]; then
         echo "Error: Downloaded premium keyring file is empty or missing."
-        exit 1
+        # exit 1
     fi
+
+# Temporary hack-fix
+    # Create the directory if it doesn't exist
+    sudo mkdir -p /etc/apt/trusted.gpg.d
+
+    # Retrieve the key from a trusted keyserver (Ubuntu’s hkps pool)
+    gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys F67720BE68E7EEE742FA62F35FD7496A07D323BC
+
+    # Export and save it to the system trusted keyring directory
+    gpg --export F67720BE68E7EEE742FA62F35FD7496A07D323BC | sudo tee /etc/apt/trusted.gpg.d/zorin-os-premium.gpg > /dev/null
+
+    # Verify that it was saved correctly
+    sudo gpg --show-keys /etc/apt/trusted.gpg.d/zorin-os-premium.gpg
+
 fi
 
 # Fix permissions of manually downloaded keyrings
 sudo chmod 644 "$TEMPD/zorin-os-keyring_1.1+1_all.deb"
-sudo chmod 644 "$TEMPD/zorin-os-premium-keyring_all.deb"
+# THis is broken ATM because of ZorinOS's packaging, so we skip it for now
+# sudo chmod 644 "$TEMPD/zorin-os-premium-keyring_all.deb"
 
 if ! sudo apt --no-install-recommends install ${no_confirm} "$TEMPD/zorin-os-keyring_1.1+1_all.deb"; then
     echo "Error: Failed to install Zorin OS keyring."
@@ -263,7 +292,7 @@ fi
 
 if ! sudo apt --no-install-recommends install ${no_confirm} "$TEMPD/zorin-os-premium-keyring_all.deb"; then
     echo "Error: Failed to install premium keyring."
-    exit 1
+    # exit 1
 fi
 
 echo ""
