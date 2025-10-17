@@ -117,13 +117,10 @@ jobs:
               desired.add("bug");
             }
 
-            // Sync labels (skip if assigned to NanashiTheNameless)
-            if (mayMutateLabelsOrState) {
-              const toRemove = MANAGED_KEYS.filter(l => current.has(l) && !desired.has(l));
-              const toAdd    = MANAGED_KEYS.filter(l => desired.has(l) && !current.has(l));
-              if (toRemove.length) await removeLabelsSafe(toRemove);
-              if (toAdd.length)    await addLabelsSafe(toAdd);
-            }
+            const toRemove = MANAGED_KEYS.filter(l => current.has(l) && !desired.has(l));
+            const toAdd    = MANAGED_KEYS.filter(l => desired.has(l) && !current.has(l));
+            if (toRemove.length) await removeLabelsSafe(toRemove);
+            if (toAdd.length)    await addLabelsSafe(toAdd);
 
             // Assignment only if valid template
             if (templateOK) {
